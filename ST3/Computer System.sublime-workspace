@@ -1,0 +1,2067 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"target",
+				"Target"
+			],
+			[
+				"veri",
+				"verification"
+			],
+			[
+				"se",
+				"sec	Section"
+			],
+			[
+				"sec",
+				"section	section"
+			],
+			[
+				"Tran",
+				"TransactinOutput"
+			],
+			[
+				"ana",
+				"analysis"
+			],
+			[
+				"commi",
+				"communication"
+			],
+			[
+				"TRA",
+				"TRAIN_TERM_NUM"
+			],
+			[
+				"lo",
+				"logLikelihood_data"
+			],
+			[
+				"test",
+				"testData"
+			],
+			[
+				"tra",
+				"trainData"
+			],
+			[
+				"cla",
+				"classificatoin_line_1"
+			],
+			[
+				"te",
+				"testLabel"
+			],
+			[
+				"zer",
+				"zeroCount"
+			],
+			[
+				"ter",
+				"termprobability"
+			],
+			[
+				"term",
+				"termprobability"
+			],
+			[
+				"doc",
+				"docNumperLabel"
+			],
+			[
+				"wor",
+				"wordscount"
+			],
+			[
+				"log",
+				"logLikelihood_data"
+			],
+			[
+				"WOR",
+				"WORD_NUM"
+			],
+			[
+				"word",
+				"wordcount"
+			],
+			[
+				"mar",
+				"marketnum"
+			],
+			[
+				"bing",
+				"bingWallpaper"
+			],
+			[
+				"desire",
+				"desiredPicURL"
+			],
+			[
+				"SET",
+				"set_desktop_background"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"con",
+				"context_id"
+			],
+			[
+				"FOUD",
+				"Found_way"
+			],
+			[
+				"x",
+				"x86_trace"
+			],
+			[
+				"ins",
+				"instruction_address_count"
+			],
+			[
+				"stri",
+				"stride_pattern_max_length"
+			],
+			[
+				"stride",
+				"stride_pattern_end"
+			],
+			[
+				"strid",
+				"stride_pattern_count"
+			],
+			[
+				"memo",
+				"memory_behavior_logger"
+			],
+			[
+				"de",
+				"devitationSum"
+			],
+			[
+				"solu",
+				"solutionCount"
+			],
+			[
+				"ce",
+				"centerDistance"
+			],
+			[
+				"vec",
+				"vectProduct"
+			],
+			[
+				"ve",
+				"vectProduct"
+			],
+			[
+				"G",
+				"GAUSSSTD"
+			],
+			[
+				"GAU",
+				"GAUSSMEAN"
+			],
+			[
+				"Node",
+				"NodeNum"
+			],
+			[
+				"beacon",
+				"beaconDist"
+			],
+			[
+				"bea",
+				"beaconDist"
+			],
+			[
+				"sta",
+				"standard"
+			],
+			[
+				"min",
+				"minDist"
+			],
+			[
+				"poin",
+				"points01"
+			],
+			[
+				"rssi",
+				"rssiRecord"
+			],
+			[
+				"Set",
+				"Set_GPIO"
+			],
+			[
+				"cle",
+				"Clear_GPIO"
+			],
+			[
+				"dis",
+				"display_GB2312_string"
+			],
+			[
+				"RL_PO",
+				"RL_POSY"
+			],
+			[
+				"rl_ch",
+				"rl_chNodePos"
+			],
+			[
+				"rl_",
+				"rl_chNodeAddr"
+			],
+			[
+				"sl_fl",
+				"sl_flNodePos"
+			],
+			[
+				"chNo",
+				"chNodePos"
+			],
+			[
+				"sl_u",
+				"sl_u8BeaconCount"
+			],
+			[
+				"SL",
+				"SL_NODE"
+			],
+			[
+				"Dis",
+				"DistanceMeasure"
+			],
+			[
+				"rl",
+				"rl_blBeaconExisted"
+			],
+			[
+				"sl_",
+				"sl_u8BeaconCount"
+			],
+			[
+				"sl",
+				"sl_u8BeaconAddrs"
+			],
+			[
+				"ST_Radio",
+				"ST_RadioSetCoordinator"
+			],
+			[
+				"minp",
+				"minpoints02"
+			],
+			[
+				"point",
+				"points_num"
+			],
+			[
+				"perime",
+				"perimeter_min"
+			],
+			[
+				"perim",
+				"perimeter_sqr"
+			],
+			[
+				"points",
+				"points02"
+			],
+			[
+				"dist",
+				"distance_sqr"
+			],
+			[
+				"perimeter",
+				"perimeter_squares"
+			],
+			[
+				"stru",
+				"struct"
+			],
+			[
+				"str",
+				"struct"
+			],
+			[
+				"d",
+				"down"
+			],
+			[
+				"delay",
+				"dwDelay"
+			],
+			[
+				"prin",
+				"printReady"
+			],
+			[
+				"cg_cell",
+				"cg_cell_volt_int"
+			],
+			[
+				"Clear",
+				"Clear_GPIO"
+			],
+			[
+				"cg_gas",
+				"cg_gas_cons_pct_dec"
+			],
+			[
+				"di",
+				"distanceRecord"
+			],
+			[
+				"cg_cel",
+				"cg_cell_volt_dec"
+			],
+			[
+				"dislin",
+				"sw_s_dislink_cnt"
+			],
+			[
+				"PORT",
+				"PORTB_PIN"
+			],
+			[
+				"packet",
+				"packetReceived"
+			],
+			[
+				"SetTx",
+				"SetTxShortID"
+			],
+			[
+				"BY",
+				"BYTE_0"
+			],
+			[
+				"BYTE",
+				"BYTE_1"
+			],
+			[
+				"sendD",
+				"sendDataReady"
+			],
+			[
+				"LCD_ROM",
+				"LCD_ROM_CS"
+			],
+			[
+				"POR",
+				"PORTB_PIN"
+			],
+			[
+				"PA0_",
+				"PA0_CFG_BIT"
+			],
+			[
+				"sw_m_STA",
+				"sw_m_status"
+			],
+			[
+				"SWSTABC",
+				"SW_M_STAB_CIRCLE"
+			],
+			[
+				"vis",
+				"DistanceMeasureVisit"
+			],
+			[
+				"Che",
+				"StatusCheckVisit"
+			],
+			[
+				"Get",
+				"GetSensorDataVisit"
+			],
+			[
+				"Sta",
+				"StatusCheckReceived"
+			],
+			[
+				"SWMNO",
+				"SW_M_NODE"
+			],
+			[
+				"SWPAC",
+				"SW_PACKGE_REV_BYTE2"
+			],
+			[
+				"adc",
+				"adcData_2"
+			],
+			[
+				"B",
+				"BYTE_0"
+			],
+			[
+				"hal",
+				"halGpioConfig"
+			],
+			[
+				"SW_ST",
+				"SW_STATUS_WORK"
+			],
+			[
+				"swsno",
+				"SW_S_NODE"
+			],
+			[
+				"sw_st",
+				"sw_s_status"
+			],
+			[
+				"swm",
+				"SW_M_NODE"
+			],
+			[
+				"IF",
+				"ifdef"
+			],
+			[
+				"if",
+				"if	If Condition"
+			],
+			[
+				"PO",
+				"PORTC_PIN"
+			],
+			[
+				"tru",
+				"TRUE虏脜脛脺脧貌脧脗脭脣脨脨"
+			],
+			[
+				"LWS_",
+				"LWS_LocalNode"
+			],
+			[
+				"serial",
+				"serialCount"
+			],
+			[
+				"pa",
+				"packetReceived"
+			],
+			[
+				"LWS",
+				"LWS_buffer"
+			],
+			[
+				"ph",
+				"phonetic_givenname"
+			],
+			[
+				"line",
+				"line_count"
+			],
+			[
+				"Jo",
+				"Joseph_2_2"
+			],
+			[
+				"J",
+				"Joseph_2_1"
+			],
+			[
+				"inc",
+				"inc	#include \"…\""
+			],
+			[
+				"new",
+				"new_list"
+			],
+			[
+				"for",
+				"for	For Loop"
+			],
+			[
+				"f",
+				"for	For Loop"
+			],
+			[
+				"def",
+				"def	Function"
+			],
+			[
+				"assert",
+				"assert_equal"
+			],
+			[
+				"ass",
+				"assert_equal"
+			],
+			[
+				"parse",
+				"parse_verb"
+			],
+			[
+				"verb",
+				"verb"
+			],
+			[
+				"s",
+				"shift"
+			],
+			[
+				"try",
+				"try	Try/Except"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
+			"settings":
+			{
+				"buffer_size": 7963,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"stash",
+				"Git: Stash Changes"
+			],
+			[
+				"statu",
+				"Git: Status"
+			],
+			[
+				"log",
+				"Git: Log All"
+			],
+			[
+				"diff",
+				"Git: Diff All"
+			],
+			[
+				"cha",
+				"Git: Change Branch"
+			],
+			[
+				"che",
+				"Git: Checkout Current File"
+			],
+			[
+				"checkou",
+				"Git: Checkout Current File"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"stat",
+				"Git: Status"
+			],
+			[
+				"pull",
+				"Git: Pull"
+			],
+			[
+				"change",
+				"Git: Change Branch"
+			],
+			[
+				"sta",
+				"View: Toggle Status Bar"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"dr",
+				"Git: Stash Drop"
+			],
+			[
+				"dro",
+				"Git: Stash Drop"
+			],
+			[
+				"drop",
+				"Git: Stash Drop"
+			],
+			[
+				"stau",
+				"Git: Status"
+			],
+			[
+				"update",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"git pu",
+				"Git: Push Current Branch"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"new",
+				"Git: New Branch"
+			],
+			[
+				"stas",
+				"Git: Stash Changes"
+			],
+			[
+				"del",
+				"Git: Delete Branch"
+			],
+			[
+				"de",
+				"Git: Delete Branch"
+			],
+			[
+				"STASH",
+				"Git: Stash Changes"
+			],
+			[
+				"branch",
+				"Git: New Branch"
+			],
+			[
+				"chagne",
+				"Git: Change Branch"
+			],
+			[
+				"dif",
+				"Git: Diff All"
+			],
+			[
+				"pop",
+				"Git: Stash Pop"
+			],
+			[
+				"pa",
+				"Package Control: List Packages"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"bra",
+				"Git: Change Branch"
+			],
+			[
+				"CHANGE",
+				"Git: Change Branch"
+			],
+			[
+				"branc",
+				"Git: New Branch"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"BRA",
+				"Git: Change Branch"
+			],
+			[
+				"disable",
+				"Package Control: Disable Package"
+			],
+			[
+				"reposi",
+				"Package Control: Add Repository"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"ad",
+				"Package Control: Add Repository"
+			],
+			[
+				"li",
+				"Package Control: List Packages"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"merge",
+				"Git: Merge Branch"
+			],
+			[
+				"chane",
+				"Git: Change Branch"
+			],
+			[
+				"git",
+				"Git: Gui"
+			],
+			[
+				"commt",
+				"Git: Commit"
+			],
+			[
+				"commi",
+				"Git: Commit"
+			],
+			[
+				"commit",
+				"Git: Commit history"
+			],
+			[
+				"Commit",
+				"Git: Commit"
+			],
+			[
+				"Comm",
+				"Git: Commit"
+			],
+			[
+				"",
+				"BracketHighlighter: Select Next Attribute (left)"
+			],
+			[
+				"ADD",
+				"Git: Add..."
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git:s",
+				"Git: Status"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"dele",
+				"Git: Delete Branch"
+			],
+			[
+				"git di",
+				"Git: Diff All"
+			],
+			[
+				"lgo",
+				"Git: Log All"
+			],
+			[
+				"git log",
+				"Git: Log All"
+			],
+			[
+				"lis",
+				"Package Control: List Packages"
+			],
+			[
+				"gitlog",
+				"Git: Log All"
+			],
+			[
+				"git stash",
+				"Git: Stash Pop"
+			],
+			[
+				"IN",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"New",
+				"Git: New Branch"
+			],
+			[
+				"git bra",
+				"Git: Change Branch"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"git:bra",
+				"Git: New Branch"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git sta",
+				"Git: Stash Apply"
+			],
+			[
+				"git branch",
+				"Git: Change Branch"
+			],
+			[
+				"git branc",
+				"Git: Change Branch"
+			],
+			[
+				"git de",
+				"Git: Delete Branch"
+			],
+			[
+				"STA",
+				"Git: Status"
+			],
+			[
+				"stash drop",
+				"Git: Stash Drop"
+			],
+			[
+				"COMMIT",
+				"Git: Commit"
+			],
+			[
+				"STAT",
+				"Git: Status"
+			],
+			[
+				"COMM",
+				"Git: Commit"
+			],
+			[
+				"ENA",
+				"Package Control: Enable Package"
+			],
+			[
+				"INS",
+				"Package Control: Install Package"
+			],
+			[
+				"pack li",
+				"Package Control: List Packages"
+			],
+			[
+				"STATUS",
+				"Git: Status"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"check",
+				"Git: Checkout Current File"
+			],
+			[
+				"git ad",
+				"Git: Add Current File"
+			],
+			[
+				"git:",
+				"Git: Blame"
+			],
+			[
+				"git:lo",
+				"Git: Log All"
+			],
+			[
+				"dia",
+				"SublimeLinter: Disable Linting"
+			],
+			[
+				"pac",
+				"Package Control: Discover Packages"
+			],
+			[
+				"al",
+				"Align Tabular"
+			],
+			[
+				"tab",
+				"Align Tabular"
+			],
+			[
+				"a",
+				"Align Tabular"
+			],
+			[
+				"ali",
+				"Align Tabular"
+			],
+			[
+				"upgra",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"updg",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"RE",
+				"Package Control: Remove Package"
+			],
+			[
+				"i n",
+				"Package Control: Install Package"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"set c++",
+				"Set Syntax: C++"
+			],
+			[
+				"pac l",
+				"Package Control: Discover Packages"
+			],
+			[
+				"pac li",
+				"Package Control: List Packages"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: re",
+				"Package Control: Remove Package"
+			],
+			[
+				"int",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"name",
+				"Snippet: Namespace"
+			],
+			[
+				"snippt:tem",
+				"Snippet: template <typename ${1:_InputIter}>"
+			],
+			[
+				"sni",
+				"Snippet: Namespace"
+			],
+			[
+				"snippet:na",
+				"Snippet: Namespace"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Namespace"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"syntax py",
+				"Set Syntax: Python"
+			],
+			[
+				"repl",
+				"SublimeREPL: Python"
+			],
+			[
+				"shell",
+				"SublimeREPL: Shell"
+			],
+			[
+				"python run",
+				"SublimeREPL: Python - RUN current file"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 374.0,
+		"history":
+		[
+			"~/.codeintel/codeintel.log",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/btest.c",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/tests.c",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/test.c",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/range_resolution.py",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/HW1/cribtastic.py",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/cribtastic.py",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/cypherfile",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/ManyTimePad.py",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/test.py",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/text",
+		"/Users/WITAN/Documents/School/Coursera-Cryptography/Cryptography/keyfile",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Model_Verification.tex",
+		"/Users/WITAN/Documents/School/18746 Network Security/NS_Homework/homework2/ST3/NS_homework_2.sublime-project",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Performance_Evaluation.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Assumption.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/finalreport.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Model.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/CreditSystem.tex",
+		"/Users/WITAN/Downloads/bing-wallpaper-master/bing-wallpaper.sh",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/submitfolder/SPIN/vtl.pml",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Introduction.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/conclusion.tex",
+		"/Users/WITAN/Documents/School/18759 Wireless Network/VTL/promela/vtl.pml",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/related_work.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/IEEEtran.cls",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/README",
+		"/Users/WITAN/Documents/School/18759 Wireless Network/VTL/promela/vtl.pml.12.out",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/Default (OSX).sublime-keymap",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Performance_Evaluation2.tex",
+		"/Users/WITAN/Google Drive/Wireless Networks/final_report/Performanc_Evaluation.tex",
+		"/Users/WITAN/Documents/Code/bitcoin/src/rpcrawtransaction.cpp",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/transaction.py",
+		"/Users/WITAN/Downloads/Minghao/Experiment3/circuit.py",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/MacTerminal/MacTerminal.sublime-settings",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/webCreditorSigningTxn.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/ContractGeneration.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/transmission.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/webCreditorConfig.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/webContractConfig.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/test.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/configuration.py",
+		"/Users/WITAN/Documents/Code/bitcoins/bitcoin_v1/utils.py",
+		"/Users/WITAN/Documents/Code/bitcoins/.gitignore",
+		"/Users/WITAN/Documents/Code/bitcoin/src/script.cpp",
+		"/Users/WITAN/Documents/Code/bitcoin/src/bitcoin-cli.cpp",
+		"/Users/WITAN/Documents/Code/bitcoin/src/rpcprotocol.h",
+		"/Users/WITAN/Documents/Code/bitcoin/src/main.cpp",
+		"/Users/WITAN/Documents/Code/bitcoin/src/bitcoind.cpp",
+		"/Users/WITAN/Documents/Code/bitcoin/src/test/rpc_tests.cpp",
+		"/Users/WITAN/Documents/Code/bitcoins/ST3/bitcoin.sublime-project",
+		"/Users/WITAN/Code/bitcoins/bitcoin_v1/configuration.py",
+		"/Users/WITAN/Code/bitcoins/bitcoin_v1/transmission.py",
+		"/Users/WITAN/Code/bitcoins/bitcoin_v1/transaction.py",
+		"/Users/WITAN/Code/bitcoins/bitcoin_v1/.project",
+		"/Users/WITAN/Code/bitcoins/.gitignore",
+		"/Users/WITAN/Code/bitcoins/bitcoin_v1/txnUtils.py",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/snort-datasets/log/alert",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/snort-datasets/log/alert.udp",
+		"/private/etc/snort/snort.conf",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/plot.py",
+		"/Users/WITAN/Downloads/snort/rules/community-web-dos.rules",
+		"/Users/WITAN/Downloads/snort/rules/backdoor.rules",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/snort-datasets/log/alert.icmp",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/snort-datasets/log/alert.tcp",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/snort_command",
+		"/Users/WITAN/Downloads/snortrules-snapshot-2946/etc/snort.conf",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/time_record.txt",
+		"/Users/WITAN/Downloads/snort/snort.conf",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/withdrawn_count.txt",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/simple.py",
+		"/Users/WITAN/School/10701 Machine Learning/Song Bird/spectrogram_process.py",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/processing_command",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/updates_text/updates.20030124.2249.txt",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/updates_txt/NS_hw2/updates_text/updates.20030124.0014.txt",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/updates_txt/NS_hw2/updates/updates.20030124.0029",
+		"/Library/Python/2.7/site-packages/dpkt/bgp.py",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/route_btoa.py",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/pybgpdump-0.2/samples/route_btoa.py",
+		"/Users/WITAN/School/18746 Network Security/Homework/homework2/pybgpdump-0.2/samples/simple.py",
+		"/Users/WITAN/School/18759 Wireless Network/MidtermReport/reference.bib",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/LaTeX.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/Latex.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/LaTeXTools/LaTeXTools Preferences.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/LaTeXTools Preferences.sublime-settings",
+		"/Users/WITAN/School/10701 Machine Learning/Song Bird/ST3/SongBird.sublime-project",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/.gitignore",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/SublimeCodeIntel.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/pylint.conf",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/test.py",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/pylint.pylintrc",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/Python PEP8 Autoformat/Default (OSX).sublime-keymap",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/Python PEP8 Autoformat/pep8_autoformat.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/BracketHighlighter/bh_core.sublime-settings",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/bh_core.sublime-settings",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/runNB.py",
+		"/Users/WITAN/Downloads/BracketHighlighter/bh_plugin.py",
+		"/Users/WITAN/Downloads/BracketHighlighter/bh_core.py",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Installed Packages/BracketHighlighter/readme.md",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/nbResults.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/logLikelihood.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/seeresults.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/nbResults.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/logLikelihood.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/seeresult.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/logPrior.csv",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/logisticRegression.py",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/MultiLogistics.py",
+		"/Applications/BingWallpaper.app/Contents/Code/BingWallpaper.py",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/LogPrior.py",
+		"/Users/WITAN/School/18746 Network Security/Bitcoin/proposal/proposal-template.tex",
+		"/Users/WITAN/Library/Preferences/com.kapeli.dash.plist",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/log",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/train.label",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/test.label",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/train.data",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/logLikelihood.py",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/naiveBayesClassify.m",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/test.data",
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/LANGFILE",
+		"/Users/WITAN/Downloads/Dash-Docset-master/README.md",
+		"/Users/WITAN/Downloads/homework1/data/test.label"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 92.0,
+		"where_history":
+		[
+			"/Users/WITAN/Google Drive/Wireless Networks/final_report",
+			"/Users/WITAN/Documents/Code/bitcoin/src",
+			"E:\\Data\\multi2sim-4.2\\src",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ctrl+c",
+			"=>",
+			"ord",
+			"a",
+			"templist",
+			"\n    # print strxor(strxora(cypher[0], cypher[1]), xorlist[1])\n    # print \"******\"\n    # print strxor(strxora(cypher[0], cypher[2]), xorlist[2])\n    # print \"******\"\n    # print strxor(strxora(cypher[0], cypher[3]), xorlist[3])",
+			"6",
+			"list(temp)",
+			"justification = centering",
+			"car",
+			"table",
+			"scale",
+			"ParseHex",
+			"IsCanonicalSignature",
+			"decode",
+			"SIGHASH_ANYONECANPAY",
+			"unknown hashtype",
+			"unknow hashtype",
+			"-127",
+			"n1y8g",
+			"n1y",
+			"SatoshiAmount",
+			"outputTransactionList",
+			"inputTransactionList",
+			"TempKeyPubAddr",
+			"TransactinOutput",
+			"TempKeyPubAddress",
+			"buildTransactionOutput",
+			", addOutputScript",
+			", addOutputScript = False",
+			"createScriptPublicKey",
+			"buildRawTransaction",
+			"createScriptPublicKey",
+			"Solver",
+			"AreInputsStandard",
+			"JSONRPCError",
+			"no information available",
+			"RPC_INVALID_ADDRESS_OR_KEY",
+			"RPC_DESERIALIZATION_ERROR",
+			"TX rejected",
+			"RPC_DESERIALIZATION_ERROR",
+			"-22",
+			"sendrawtransaction",
+			"AcceptToMemoryPool",
+			"sendrawtransaction",
+			"main",
+			"raw",
+			"rawtransaction",
+			"x",
+			"0",
+			"c9b74446725c99d429848f8093a347976784d133efec971343be004d5f9c7fdc",
+			"d3484a00246dee175bfc092b7ed7bb3067ec78083035d9cfd34cec06f40c4cc2",
+			"fd3b98af3c17d6d29fed6f97c6f03519bbcd35a29fea632e0400090f2af61278",
+			"getECDAPublicKeyWithPrefix",
+			"opCodeDefinitions",
+			"createScriptPublicKey",
+			"buildScriptSig",
+			"privateKeyList",
+			"'80'",
+			"'\\80'",
+			"print",
+			"buildSignedTransaction",
+			"transactionInputList",
+			"buildTransactionInput",
+			"inputParameters",
+			"buildTransactionInput",
+			"buildScriptSig",
+			"buildRawTransaction",
+			"buildTransactionOutput",
+			"buildTransactionInput",
+			"buildRawTransaction",
+			"createScriptPublicKey",
+			"buildTransactionInput",
+			"modified_tx",
+			"parseTxn",
+			"dos",
+			"WHITE_LIST_PATH",
+			"updates",
+			"dnet",
+			"aggregator",
+			"update",
+			"bgp_m",
+			"as",
+			"communities_to_str",
+			"DSRC",
+			"communication and localization",
+			"localization",
+			"conflictions",
+			"fullfilled",
+			"bike­lane",
+			"pagenumbering",
+			"\\u8",
+			"”",
+			"obeserved",
+			"vechicle",
+			"becasue",
+			"whichi",
+			"safty",
+			"history",
+			"deivce",
+			"TERM_NUM",
+			"TRAIN_TERM_NUM",
+			"TERM_NUM",
+			"TRAIN_TERM_NUM",
+			",\n",
+			"TRAIN_TERM_NUM",
+			"TEST_DOC_NUM",
+			"TRAIN_TERM_NUM",
+			" print logLikelihood_data[0][0]\n    print logLikelihood_data[1][0]",
+			"label",
+			"logLikelihood_data",
+			"TERM_NUM",
+			"0",
+			"i",
+			"array",
+			"loadtxt",
+			"x",
+			"10",
+			"matplotlib.pyplot",
+			"plot",
+			"script",
+			"SCRIPT",
+			"testData",
+			"trainLabels",
+			"trainData",
+			"trainLabels",
+			"trainData",
+			"textDocPossbility"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 7963,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close"
+							],
+							"syntax": "Packages/C++/C.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.Compilation_Arduino_102000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_114000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_125000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_142000":
+	{
+		"height": 294.0
+	},
+	"output.Compilation_Arduino_161000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_18000":
+	{
+		"height": 178.0
+	},
+	"output.Compilation_Arduino_186000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_187000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_194000":
+	{
+		"height": 207.0
+	},
+	"output.Compilation_Arduino_198000":
+	{
+		"height": 549.0
+	},
+	"output.Compilation_Arduino_199000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_201000":
+	{
+		"height": 226.0
+	},
+	"output.Compilation_Arduino_235000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_243000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_279000":
+	{
+		"height": 308.0
+	},
+	"output.Compilation_Arduino_286000":
+	{
+		"height": 368.0
+	},
+	"output.Compilation_Arduino_293000":
+	{
+		"height": 473.0
+	},
+	"output.Compilation_Arduino_297000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_30000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_324000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_334000":
+	{
+		"height": 406.0
+	},
+	"output.Compilation_Arduino_339000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_343000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_344000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_35000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_356000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_357000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_362000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_366000":
+	{
+		"height": 430.0
+	},
+	"output.Compilation_Arduino_367000":
+	{
+		"height": 382.0
+	},
+	"output.Compilation_Arduino_374000":
+	{
+		"height": 245.0
+	},
+	"output.Compilation_Arduino_379000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_383000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_385000":
+	{
+		"height": 128.0
+	},
+	"output.Compilation_Arduino_392000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_403000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_404000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_419000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_422000":
+	{
+		"height": 373.0
+	},
+	"output.Compilation_Arduino_423000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_424000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_431000":
+	{
+		"height": 352.0
+	},
+	"output.Compilation_Arduino_448000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_45000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_462000":
+	{
+		"height": 414.0
+	},
+	"output.Compilation_Arduino_47000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_483000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_484000":
+	{
+		"height": 239.0
+	},
+	"output.Compilation_Arduino_5000":
+	{
+		"height": 440.0
+	},
+	"output.Compilation_Arduino_502000":
+	{
+		"height": 136.0
+	},
+	"output.Compilation_Arduino_519000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_534000":
+	{
+		"height": 126.0
+	},
+	"output.Compilation_Arduino_541000":
+	{
+		"height": 371.0
+	},
+	"output.Compilation_Arduino_562000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_590000":
+	{
+		"height": 384.0
+	},
+	"output.Compilation_Arduino_597000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_599000":
+	{
+		"height": 315.0
+	},
+	"output.Compilation_Arduino_602000":
+	{
+		"height": 266.0
+	},
+	"output.Compilation_Arduino_625000":
+	{
+		"height": 311.0
+	},
+	"output.Compilation_Arduino_627000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_63000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_646000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_662000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_663000":
+	{
+		"height": 496.0
+	},
+	"output.Compilation_Arduino_667000":
+	{
+		"height": 230.0
+	},
+	"output.Compilation_Arduino_7000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_736000":
+	{
+		"height": 122.0
+	},
+	"output.Compilation_Arduino_751000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_757000":
+	{
+		"height": 351.0
+	},
+	"output.Compilation_Arduino_759000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_763000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_771000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_813000":
+	{
+		"height": 309.0
+	},
+	"output.Compilation_Arduino_829000":
+	{
+		"height": 326.0
+	},
+	"output.Compilation_Arduino_83000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_854000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_874000":
+	{
+		"height": 164.0
+	},
+	"output.Compilation_Arduino_886000":
+	{
+		"height": 135.0
+	},
+	"output.Compilation_Arduino_894000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_907000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_910000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_927000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_965000":
+	{
+		"height": 168.0
+	},
+	"output.Compilation_Arduino_971000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Arduino_979000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_Audio_380000":
+	{
+		"height": 328.0
+	},
+	"output.Compilation_MPU6050_341000":
+	{
+		"height": 90.0
+	},
+	"output.Compilation_MPU6050_raw_302000":
+	{
+		"height": 173.0
+	},
+	"output.Compilation_Processing_156000":
+	{
+		"height": 407.0
+	},
+	"output.Compilation_Processing_209000":
+	{
+		"height": 265.0
+	},
+	"output.exec":
+	{
+		"height": 272.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 282.0
+	},
+	"output.stino_log":
+	{
+		"height": 90.0
+	},
+	"project": "Computer System.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"mo",
+				"Model.tex"
+			],
+			[
+				"per",
+				"Performance_Evaluation.tex"
+			],
+			[
+				"cre",
+				"CreditSystem.tex"
+			],
+			[
+				"mod",
+				"Model.tex"
+			],
+			[
+				"ver",
+				"Model_Verification.tex"
+			],
+			[
+				"",
+				"Model_Assumption.tex"
+			],
+			[
+				"in",
+				"Introduction.tex"
+			],
+			[
+				"int",
+				"Introduction.tex"
+			],
+			[
+				"rel",
+				"related_work.tex"
+			],
+			[
+				"logger",
+				"arch\\x86\\timing\\MemoryBehaviorLogger.c"
+			],
+			[
+				"sched",
+				"arch\\x86\\timing\\sched.c"
+			],
+			[
+				"pref",
+				"arch\\x86\\timing\\MemoryDrivenPrefetcher.c"
+			],
+			[
+				"context-",
+				"arch\\x86\\timing\\context-queue.c"
+			],
+			[
+				"evet",
+				"arch\\x86\\timing\\event-queue.h"
+			],
+			[
+				"eve",
+				"arch\\x86\\timing\\event-queue.c"
+			],
+			[
+				"sche",
+				"arch\\x86\\timing\\sched.c"
+			],
+			[
+				"cpu.c",
+				"arch\\x86\\timing\\cpu.c"
+			],
+			[
+				"fet",
+				"arch\\x86\\timing\\fetch.c"
+			],
+			[
+				"sche.c",
+				"arch\\x86\\timing\\sched.c"
+			],
+			[
+				"thread",
+				"arch\\x86\\timing\\thread.c"
+			],
+			[
+				"threa",
+				"arch\\fermi\\emu\\thread.c"
+			],
+			[
+				"pre",
+				"arch\\x86\\timing\\MemoryDrivenPrefetcher.h"
+			],
+			[
+				"context.c",
+				"arch\\x86\\emu\\context.c"
+			],
+			[
+				"mem",
+				"arch\\x86\\timing\\MemoryBehaviorLogger.h"
+			],
+			[
+				"prefet",
+				"arch\\x86\\timing\\MemoryDrivenPrefetcher.h"
+			],
+			[
+				"x86thread",
+				"arch\\x86\\timing\\thread.h"
+			],
+			[
+				"x86context",
+				"arch\\x86\\emu\\context.h"
+			],
+			[
+				"context",
+				"arch\\x86\\emu\\context.c"
+			],
+			[
+				"memory",
+				"arch\\x86\\timing\\MemoryBehaviorLogger.h"
+			],
+			[
+				"memb",
+				"arch\\x86\\timing\\MemoryBehaviorLogger.c"
+			],
+			[
+				"contex",
+				"arch\\x86\\emu\\context.c"
+			],
+			[
+				"x86em",
+				"arch\\x86\\emu\\emu.c"
+			],
+			[
+				"main",
+				"DevBoard/main.c"
+			],
+			[
+				"opcode",
+				"Python/Python-2.7.3/Include/opcode.h"
+			],
+			[
+				"stringobjec",
+				"Python-2.7.3/Objects/stringobject.c"
+			],
+			[
+				"string",
+				"Python-2.7.3/Include/stringobject.h"
+			],
+			[
+				"intobj",
+				"Python-2.7.3/Objects/intobject.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/School/Coursera-Cryptography/Cryptography/ST3/Cryptography.sublime-project"
+			],
+			[
+				"ns",
+				"~/Documents/Code/bitcoins/bitcoin_v1/NS_Homework3.sublime-workspace"
+			],
+			[
+				"ml",
+				"~/Documents/School/10701 Machine Learning/ML_Homework/Homework4/ST3/ML_Homework4.sublime-project"
+			],
+			[
+				"ho",
+				"~/School/18746 Network Security/Homework/homework2/ST3/NS_homework_2.sublime-project"
+			],
+			[
+				"	",
+				"E:\\Data\\WSNPlatform\\STM32W108\\simplemac\\demos\\DevBoard\\SublimeText\\DevBoard.sublime-project"
+			]
+		],
+		"width": 589.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"",
+				"LogPrior"
+			]
+		],
+		"width": 378.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 194.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
