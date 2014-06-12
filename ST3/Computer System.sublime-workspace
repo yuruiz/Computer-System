@@ -520,10 +520,26 @@
 	"buffers":
 	[
 		{
+			"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/Makefile",
+			"settings":
+			{
+				"buffer_size": 543,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
 			"settings":
 			{
-				"buffer_size": 7963,
+				"buffer_size": 9572,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/WITAN/Documents/School/Computer System/Assignments/cachelab-handout/contracts.h",
+			"settings":
+			{
+				"buffer_size": 521,
 				"line_ending": "Unix"
 			}
 		}
@@ -531,9 +547,33 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 115.0,
 		"selected_items":
 		[
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"clean",
+				"Build: Clean"
+			],
+			[
+				"buil",
+				"Build: Clean"
+			],
 			[
 				"in",
 				"Package Control: Install Package"
@@ -581,18 +621,6 @@
 			[
 				"checkou",
 				"Git: Checkout Current File"
-			],
-			[
-				"push",
-				"Git: Push"
-			],
-			[
-				"comm",
-				"Git: Commit"
-			],
-			[
-				"add",
-				"Git: Add..."
 			],
 			[
 				"stat",
@@ -741,10 +769,6 @@
 			[
 				"chane",
 				"Git: Change Branch"
-			],
-			[
-				"git",
-				"Git: Gui"
 			],
 			[
 				"commt",
@@ -1037,14 +1061,6 @@
 			[
 				"repl",
 				"SublimeREPL: Python"
-			],
-			[
-				"shell",
-				"SublimeREPL: Shell"
-			],
-			[
-				"python run",
-				"SublimeREPL: Python - RUN current file"
 			]
 		],
 		"width": 579.0
@@ -1069,7 +1085,12 @@
 	},
 	"file_history":
 	[
+		"/Users/WITAN/Documents/School/Computer System/Assignments/.gitignore",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/try.c",
 		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/README",
+		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bddcheck/README",
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/C.sublime-build",
 		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/btest.c",
 		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/tests.c",
@@ -1191,12 +1212,7 @@
 		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/train.label",
 		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/test.label",
 		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/train.data",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/logLikelihood.py",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/naiveBayesClassify.m",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/test.data",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/LANGFILE",
-		"/Users/WITAN/Downloads/Dash-Docset-master/README.md",
-		"/Users/WITAN/Downloads/homework1/data/test.label"
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/logLikelihood.py"
 	],
 	"find":
 	{
@@ -1218,6 +1234,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"exp",
+			"x",
+			"x_msb",
+			"test_function",
+			"run_tests",
+			")",
+			"^=",
 			"ctrl+c",
 			"=>",
 			"ord",
@@ -1338,14 +1361,7 @@
 			"10",
 			"matplotlib.pyplot",
 			"plot",
-			"script",
-			"SCRIPT",
-			"testData",
-			"trainLabels",
-			"trainData",
-			"trainLabels",
-			"trainData",
-			"textDocPossbility"
+			"script"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1363,24 +1379,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
-					"semi_transient": true,
+					"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/Makefile",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7963,
+						"buffer_size": 543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								435,
+								435
 							]
 						],
 						"settings":
@@ -1388,6 +1404,14 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1396,22 +1420,6 @@
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
@@ -1420,18 +1428,382 @@
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+										"PATH": "/usr/local/bin:/usr/local/sbin:$PATH",
+										"PYTHONPATH": "/usr/local/lib/python2.7/site-packages:/usr/local/lib/python:$PYTHONPATH"
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9572,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								490,
+								490
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
-								"bh_angle_close"
+								"bh_angle_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close"
 							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+										"PATH": "/usr/local/bin:/usr/local/sbin:$PATH",
+										"PYTHONPATH": "/usr/local/lib/python2.7/site-packages:/usr/local/lib/python:$PYTHONPATH"
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
 							"syntax": "Packages/C++/C.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/WITAN/Documents/School/Computer System/Assignments/cachelab-handout/contracts.h",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 521,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								447,
+								447
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close"
+							],
+							"syntax": "Packages/C++/C++.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
