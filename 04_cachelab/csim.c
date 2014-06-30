@@ -107,12 +107,42 @@ void cacheClose(int sets_num, int asso_num, int block_size, cache_t *cache)
 
 }
 
+int findmaxcount(cache_set_t *selected_set, int assoc)
+{
+    int max_count = selected_set->lines[0].lastused;
+    int min_count = selected_set->lines[0].lastused;
+    int select_index = 0;
+
+    for (int i = 0; i < assoc; i++)
+    {
+        int lastused = selected_set->lines[i].lastused;
+
+        if (selected_set->lines[i].valid == 0)
+        {
+            continue;
+        }
+
+            if (min_count > lastused)
+            {
+                min_count = lastused;
+                select_index = i;
+            }
+
+            if (max_count < lastused)
+            {
+                max_count = lastused;
+            }
+    }
+
+    return max_count;
+}
+
 void cache_sim(cache_t *cache, cache_status_t *status, cache_param_t *param, mem_addr_t address)
 {
     int tagsize = 64 - (param->s + param->b);
     mem_addr_t tag = address >> (param->s + param->b);
     mem_addr_t setindex = (address << tagsize) >> (tagsize + param->b);
-
+    printf("index: %llx, tag: %llx, address: %llx\n", setindex, tag, address);
     int assoc = param->E;
 
     cache_set_t selected_set = cache->sets[setindex];
@@ -132,16 +162,18 @@ void cache_sim(cache_t *cache, cache_status_t *status, cache_param_t *param, mem
         }
         else
         {
+            printf("miss\n");
             status->misses++;
             line.valid = 1;
             line.tag = tag;
-            line.lastused++;
+            line.lastused = findmaxcount(&selected_set, assoc);
             cache->sets[setindex].lines[i] = line;
             return;
         }
     }
-
+    printf("miss\n");
     status->misses++;
+    printf("evicts\n");
     status->evicts++;
 
     int max_count = selected_set.lines[0].lastused;
@@ -245,12 +277,12 @@ int main(int argc, char *argv[])
                     break;
                 case 'M':
                     cache_sim(cache, &status, &cache_param, mem_address);
+                    cache_sim(cache, &status, &cache_param, mem_address);
                     break;
                 case 'L':
                     cache_sim(cache, &status, &cache_param, mem_address);
                     break;
                 case 'S':
-                    cache_sim(cache, &status, &cache_param, mem_address);
                     cache_sim(cache, &status, &cache_param, mem_address);
                     break;
                 default:
