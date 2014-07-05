@@ -213,24 +213,37 @@ eval(char *cmdline)
         case BUILTIN_NONE:
             sigemptyset(&mask);
             sigaddset(&mask, SIGCHLD);
+            sigaddset(&mask, SIGINT);
+            sigaddset(&mask, SIGTSTP);
+
             sigprocmask(SIG_BLOCK, &mask, NULL);
 
-            if ((pid = fork())== 0)
+            if ((pid = fork()) == 0)
             {
                 sigprocmask(SIG_UNBLOCK, &mask, NULL);
-                // if(setpgid(0, 0) == -1)
-                // {
-                //     unix_error("setting group id error.\n");
-                // }
+                if(setpgid(0, 0) == -1)
+                {
+                    unix_error("setting group id error.\n");
+                }
                 if (tok.infile != NULL)
                 {
                     int infd = open(tok.infile, O_RDONLY, 0);
+                    if (infd < 0)
+                    {
+                        printf("file not exits, %s\n", tok.infile);
+                        exit(0);
+                    }
                     dup2(infd, STDIN_FILENO);
                 }
 
                 if (tok.outfile != NULL)
                 {
                     int outfd = open(tok.outfile, O_WRONLY, 0);
+                    if (outfd < 0)
+                    {
+                        printf("file not exits, %s\n", tok.outfile);
+                        exit(0);
+                    }
                     dup2(outfd, STDOUT_FILENO);
                 }
 
@@ -247,7 +260,7 @@ eval(char *cmdline)
                 sigemptyset(&waitmask);
                 addjob(job_list, pid, FG, cmdline);
                 sigprocmask(SIG_UNBLOCK, &mask, NULL);
-                if (fgpid(job_list) != 0)
+                while (fgpid(job_list) != 0 && getjobpid(job_list, pid)->state != ST)
                 {
                     sigsuspend(&waitmask);
                 }
@@ -266,33 +279,113 @@ eval(char *cmdline)
             exit(0);
             break;
         case BUILTIN_JOBS:
-            listjobs(job_list, STDOUT_FILENO);
-            break;
-        case BUILTIN_BG:
-            id = atoi(tok.argv[1]);
-            if ((getjoblist = getjobpid(job_list, id)) != NULL)
+        {
+            int outfd = STDOUT_FILENO;
+            if (tok.outfile != NULL)
             {
-                int getjid = getjoblist[0].jid;
-                int i = 0;
-                while(getjoblist[i].jid == getjid) {
-                    kill(getjoblist[i].pid, SIGCONT);
-                    i++;
+                outfd = open(tok.outfile, O_WRONLY, 0);
+                if (outfd < 0)
+                {
+                    printf("file not exits, %s\n", tok.outfile);
                 }
             }
-            else if((getjoblist = getjobjid(job_list, id)) != NULL)
+            listjobs(job_list, outfd);
+        }
+            break;
+        case BUILTIN_BG:
+            if (tok.argv[tok.argc - 1][0] == '%')
             {
-                int i = 0;
-                while(getjoblist[i].jid == id) {
-                    kill(getjoblist[i].pid, SIGCONT);
-                    i++;
+                id = atoi(tok.argv[tok.argc - 1]+1);
+
+                if((getjoblist = getjobjid(job_list, id)) != NULL)
+                {
+                    int i = 0;
+                    while(getjoblist[i].jid == id) {
+                        getjoblist[i].state = BG;
+                        kill(getjoblist[i].pid, SIGCONT);
+                        printf("[%d] (%d) %s\n", getjoblist[i].jid, getjoblist[i].pid, getjoblist[i].cmdline);
+                        i++;
+                    }
+
+                }
+                else
+                {
+                    printf("The job doesnt exist: %s\n", tok.argv[1]);
                 }
             }
             else
             {
-                unix_error("no job found");
+                id = atoi(tok.argv[tok.argc - 1]);
+                if((getjoblist = getjobpid(job_list, id)) != NULL)
+                {
+                    int getjid = getjoblist[0].jid;
+                    int i = 0;
+                    while(getjoblist[i].jid == getjid) {
+                        getjoblist[i].state = BG;
+                        kill(getjoblist[i].pid, SIGCONT);
+                        printf("[%d] (%d) %s\n", getjoblist[i].jid, getjoblist[i].pid, getjoblist[i].cmdline);
+                        i++;
+                    }
+                }
+                else
+                {
+                    printf("The process doesn't exit.\n");
+                }
             }
+
             break;
         case BUILTIN_FG:
+            if (tok.argv[tok.argc - 1][0] == '%')
+            {
+                sigset_t waitmask;
+                sigemptyset(&waitmask);
+                id = atoi(tok.argv[tok.argc - 1]+1);
+
+                if((getjoblist = getjobjid(job_list, id)) != NULL)
+                {
+                    int i = 0;
+                    while(getjoblist[i].jid == id) {
+                        while (fgpid(job_list) != 0 &&
+                            getjobpid(job_list, getjoblist[i].pid)->state != ST) {
+                            sigsuspend(&waitmask);
+                        }
+                        getjoblist[i].state = FG;
+                        kill(getjoblist[i].pid, SIGCONT);
+                        i++;
+                    }
+
+                }
+                else
+                {
+                    printf("The job doesnt exist: %s\n", tok.argv[1]);
+                }
+            }
+            else
+            {
+                sigset_t waitmask;
+                sigemptyset(&waitmask);
+                id = atoi(tok.argv[tok.argc - 1]);
+                if((getjoblist = getjobpid(job_list, id)) != NULL)
+                {
+                    int getjid = getjoblist[0].jid;
+                    int i = 0;
+                    while(getjoblist[i].jid == getjid) {
+                        while (fgpid(job_list) != 0 &&
+                            getjobpid(job_list, getjoblist[i].pid)->state != ST) {
+                            sigsuspend(&waitmask);
+                        }
+                        getjoblist[i].state = FG;
+                        kill(getjoblist[i].pid, SIGCONT);
+                        i++;
+                    }
+                }
+                else
+                {
+                    printf("The process doesn't exit.\n");
+                }
+            }
+
+
             id = atoi(tok.argv[1]);
             if ((getjoblist = getjobpid(job_list, id)) != NULL)
             {
@@ -491,15 +584,25 @@ parseline(const char *cmdline, struct cmdline_tokens *tok)
 void
 sigchld_handler(int sig)
 {
+    int status;
     pid_t pid;
-    while ((pid = waitpid(-1, NULL, WNOHANG|WUNTRACED)) > 0)
+    while ((pid = waitpid(-1, &status, WNOHANG|WUNTRACED)) > 0)
     {
-        deletejob(job_list, pid);
+        if (WIFEXITED(status))
+        {
+            deletejob(job_list, pid);
+        }
+        else if (WIFSIGNALED(status))
+        {
+            printf("Job [%d] (%d) terminated by signal %d\n", pid2jid(pid), pid, WTERMSIG(status));
+            deletejob(job_list, pid);
+        }
+        else if (WIFSTOPPED(status))
+        {
+            printf("Job [%d] (%d) stopped by signal %d\n", pid2jid(pid), pid, WSTOPSIG(status));
+            getjobpid(job_list, pid)->state = ST;
+        }
     }
-    // if (errno != ECHILD)
-    // {
-    //     unix_error("waitpid error");
-    // }
     return;
 }
 
@@ -514,7 +617,11 @@ sigint_handler(int sig)
     pid_t pid = fgpid(job_list);
     if (pid != 0)
     {
-        kill(pid, SIGINT);
+        kill(-pid, SIGINT);
+    }
+    else
+    {
+        printf("job not added\n");
     }
     return;
 }
@@ -530,7 +637,11 @@ sigtstp_handler(int sig)
     pid_t pid = fgpid(job_list);
     if (pid != 0)
     {
-        kill(pid, SIGTSTP);
+        kill(-pid, SIGTSTP);
+    }
+    else
+    {
+        printf("job not added\n");
     }
 
     return;

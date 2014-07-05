@@ -3,7 +3,7 @@
 #
 /bin/echo -e tsh\076 ./mysplit 10
 NEXT
-./mysplit 10 
+./mysplit 10
 WAIT
 
 SIGINT
@@ -15,4 +15,3 @@ NEXT
 NEXT
 
 quit
-
