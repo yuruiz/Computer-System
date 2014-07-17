@@ -18,7 +18,7 @@
 
 /* $begin mallocmacros */
 /* Basic constants and macros */
-#define LISTNUM    20
+#define LISTNUM    16
 #define WSIZE       4       /* Word and header/footer size (bytes) */ //line:vm:mm:beginconst
 #define DSIZE       8       /* Doubleword size (bytes) */
 #define CHUNKSIZE  (1<<12)  /* Extend heap by this amount (bytes) */  //line:vm:mm:endconst
@@ -56,11 +56,7 @@
 
 /* Global variables */
 static char *heap_listp = NULL;  /* Pointer to first block */
-// #ifdef NEXT_FIT
-// static char *rover;           /* Next fit rover */
-// #endif
-static char *free_lists[LISTNUM];
-// static char *heap_listp;
+static char **free_lists;
 
 /* Function prototypes for internal helper routines */
 static void *extend_heap(size_t words);
@@ -69,6 +65,7 @@ static void *find_fit(size_t asize);
 static void *coalesce(void *bp);
 static void rmfrblock(void *bp);
 static void infrblock(void *bp);
+static int decidecls(size_t size);
 
 /*
  * mm_init - Initialize the memory manager
@@ -76,6 +73,9 @@ static void infrblock(void *bp);
 /* $begin mminit */
 int mm_init(void)
 {
+    if ((free_lists = mem_sbrk(LISTNUM * DSIZE)) == (void *) - 1) //line:vm:mm:begininit
+    { return -1; }
+
     /* Create the initial empty heap */
     if ((heap_listp = mem_sbrk(4 * WSIZE)) == (void *) - 1) //line:vm:mm:begininit
     { return -1; }
@@ -83,7 +83,6 @@ int mm_init(void)
     for (int i = 0; i < LISTNUM; i++)
     {
         free_lists[i] = NULL;
-        // free_listt[i] = NULL;
     }
 
     /* $begin mminit */
@@ -124,7 +123,7 @@ void *mm_malloc(size_t size)
 
     /* $begin mmmalloc */
     /* Ignore spurious requests */
-    if (size == 0)
+    if (size <= 0)
     { return NULL; }
 
     /* Adjust block size to include overhead and alignment reqs. */
@@ -174,7 +173,7 @@ void mm_free(void *bp)
 
     PUT(HDRP(bp), PACK(size, 0));
     PUT(FTRP(bp), PACK(size, 0));
-    infrblock(bp);
+
     coalesce(bp);
 }
 
@@ -191,6 +190,7 @@ static void *coalesce(void *bp)
 
     if (prev_alloc && next_alloc)              /* Case 1 */
     {
+        infrblock(bp);
         return bp;
     }
 
@@ -199,7 +199,6 @@ static void *coalesce(void *bp)
         size += GET_SIZE(HDRP(NEXT_BLKP(bp)));
 
         rmfrblock(NEXT_BLKP(bp));
-        rmfrblock(bp);
 
         PUT(HDRP(bp), PACK(size, 0));
         PUT(FTRP(bp), PACK(size, 0));
@@ -211,7 +210,6 @@ static void *coalesce(void *bp)
     {
         size += GET_SIZE(HDRP(PREV_BLKP(bp)));
 
-        rmfrblock(bp);
         rmfrblock(PREV_BLKP(bp));
 
         PUT(FTRP(bp), PACK(size, 0));
@@ -228,7 +226,6 @@ static void *coalesce(void *bp)
         size += GET_SIZE(HDRP(PREV_BLKP(bp))) +
                 GET_SIZE(FTRP(NEXT_BLKP(bp)));
 
-        rmfrblock(bp);
         rmfrblock(NEXT_BLKP(bp));
         rmfrblock(PREV_BLKP(bp));
 
@@ -317,7 +314,6 @@ static void *extend_heap(size_t words)
     PUT(HDRP(bp), PACK(size, 0));         /* Free block header */   //line:vm:mm:freeblockhdr
     PUT(FTRP(bp), PACK(size, 0));         /* Free block footer */   //line:vm:mm:freeblockftr
     PUT(HDRP(NEXT_BLKP(bp)), PACK(0, 1)); /* New epilogue header */ //line:vm:mm:newepihdr
-    infrblock(bp);
 
     /* Coalesce if the previous block was free */
     return coalesce(bp);                                          //line:vm:mm:returnblock
@@ -344,9 +340,11 @@ static void place(void *bp, size_t asize)
         PUT(FTRP(bp), PACK(asize, 1));
 
         bp = NEXT_BLKP(bp);
+
         PUT(HDRP(bp), PACK(csize - asize, 0));
         PUT(FTRP(bp), PACK(csize - asize, 0));
-        infrblock(bp);
+
+        coalesce(bp);
     }
     else
     {
@@ -366,25 +364,17 @@ static void *find_fit(size_t asize)
 {
     /* First fit search */
     void *bp;
-    int list = 0;
-    size_t size = asize;
+    int list = decidecls(asize);
 
-    while(list < LISTNUM - 1 && size > 1)
+    for (int i = list; i < LISTNUM; i++)
     {
-        size >>= 1;
-        list++;
-    }
-
-    while(list < LISTNUM) {
-
-        for (bp = free_lists[list]; bp != NULL; bp = NEXT_FREE_BLKP(bp))
+        for (bp = free_lists[i]; bp != NULL; bp = NEXT_FREE_BLKP(bp))
         {
             if (asize <= GET_SIZE(HDRP(bp)))
             {
                 return bp;
             }
         }
-        list++;
     }
 
     return NULL; /* No fit */
@@ -394,60 +384,21 @@ static void *find_fit(size_t asize)
 static void infrblock(void *bp)
 {
     size_t size = GET_SIZE(HDRP(bp));
-    void *nextptr = NULL;
-    void *prevptr = NULL;
-    int list = 0;
+    int list = decidecls(size);
 
-    while(list < LISTNUM - 1 && size > 1)
+    PUTADDRESS(SUCCP(bp), free_lists[list]);
+    PUTADDRESS(PREDP(bp), NULL);
+    if (free_lists[list] != NULL)
     {
-        size >>= 1;
-        list++;
+        PUTADDRESS(PREDP(free_lists[list]), bp);
     }
-
-    size = GET_SIZE(HDRP(bp));
-
-    nextptr = free_lists[list];
-
-    while(nextptr != NULL && size > GET_SIZE(HDRP(nextptr))) {
-        prevptr = nextptr;
-        nextptr = NEXT_FREE_BLKP(nextptr);
-    }
-
-    if (nextptr != NULL)
-    {
-        if (prevptr != NULL)
-        {
-            PUTADDRESS(SUCCP(prevptr), bp);
-            PUTADDRESS(PREDP(bp), prevptr);
-            PUTADDRESS(SUCCP(bp), nextptr);
-            PUTADDRESS(PREDP(nextptr), bp);
-        }
-        else
-        {
-            PUTADDRESS(PREDP(bp), NULL);
-            PUTADDRESS(SUCCP(bp), nextptr);
-            PUTADDRESS(PREDP(nextptr), bp);
-            free_lists[list] = bp;
-        }
-    }
-    else
-    {
-        if (prevptr != NULL)
-        {
-            PUTADDRESS(SUCCP(prevptr), bp);
-            PUTADDRESS(PREDP(bp), prevptr);
-            PUTADDRESS(SUCCP(bp), NULL);
-        }
-        else
-        {
-            PUTADDRESS(SUCCP(bp), NULL);
-            PUTADDRESS(PREDP(bp), NULL);
-            free_lists[list] = bp;
-        }
-    }
+    free_lists[list] = bp;
 }
+
 static void rmfrblock(void *bp)
 {
+    size_t size = GET_SIZE(HDRP(bp));
+    int list = decidecls(size);
 
     if (PREV_FREE_BLKP(bp) != NULL)
     {
@@ -455,15 +406,6 @@ static void rmfrblock(void *bp)
     }
     else
     {
-        size_t size = GET_SIZE(HDRP(bp));
-        int list = 0;
-
-        while(list < LISTNUM - 1 && size > 1)
-        {
-            size >>= 1;
-            list++;
-        }
-
         if (NEXT_FREE_BLKP(bp) == NULL)
         {
             free_lists[list] = NULL;
@@ -480,4 +422,22 @@ static void rmfrblock(void *bp)
     {
         PUTADDRESS(SUCCP(PREV_FREE_BLKP(bp)), NULL);
     }
+}
+
+static int decidecls(size_t size)
+{
+    int i = 0;
+
+    size >>= 4;
+
+    for (i = 0; i < LISTNUM - 1; i++)
+    {
+        size >>= 1;
+        if (size <= 1)
+        {
+            return i;
+        }
+    }
+
+    return i;
 }
