@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "mm.h"
 #include "memlib.h"
@@ -14,10 +15,10 @@
 /*
  * If NEXT_FIT defined use next fit search, else use first fit search
  */
-#define NEXT_FITx
 
 /* $begin mallocmacros */
 /* Basic constants and macros */
+#define LISTNUM    20
 #define WSIZE       4       /* Word and header/footer size (bytes) */ //line:vm:mm:beginconst
 #define DSIZE       8       /* Doubleword size (bytes) */
 #define CHUNKSIZE  (1<<12)  /* Extend heap by this amount (bytes) */  //line:vm:mm:endconst
@@ -54,12 +55,12 @@
 /* $end mallocmacros */
 
 /* Global variables */
-static char *heap_listp = 0;  /* Pointer to first block */
-#ifdef NEXT_FIT
-static char *rover;           /* Next fit rover */
-#endif
-static char *free_listp;
-static char *free_listt;
+static char *heap_listp = NULL;  /* Pointer to first block */
+// #ifdef NEXT_FIT
+// static char *rover;           /* Next fit rover */
+// #endif
+static char *free_lists[LISTNUM];
+// static char *heap_listp;
 
 /* Function prototypes for internal helper routines */
 static void *extend_heap(size_t words);
@@ -69,7 +70,8 @@ static void *coalesce(void *bp);
 static void printblock(void *bp);
 static void checkheap(int verbose);
 static void checkblock(void *bp);
-static void flrmblock(void *bp);
+static void rmfrblock(void *bp);
+static void infrblock(void *bp);
 
 /*
  * mm_init - Initialize the memory manager
@@ -81,6 +83,12 @@ int mm_init(void)
     if ((heap_listp = mem_sbrk(4 * WSIZE)) == (void *) - 1) //line:vm:mm:begininit
     { return -1; }
 
+    for (int i = 0; i < LISTNUM; i++)
+    {
+        free_lists[i] = NULL;
+        // free_listt[i] = NULL;
+    }
+
     /* $begin mminit */
     PUT(heap_listp, 0);                          /* Alignment padding */
     PUT(heap_listp + (1 * WSIZE), PACK(DSIZE, 1)); /* Prologue header */
@@ -88,18 +96,14 @@ int mm_init(void)
     PUT(heap_listp + (3 * WSIZE), PACK(0, 1));   /* Epilogue header */
     heap_listp += (2 * WSIZE);                   //line:vm:mm:endinit
 
-    free_listp = NULL;
-    free_listt = NULL;
+    // free_listp = NULL;
+    // free_listt = NULL;
 
     /* $end mminit */
 
     /* Extend the empty heap with a free block of CHUNKSIZE bytes */
     if ((extend_heap(CHUNKSIZE / WSIZE)) == NULL)
     { return -1; }
-
-#ifdef NEXT_FIT
-    rover = free_listp;
-#endif
 
     return 0;
 }
@@ -133,7 +137,7 @@ void *mm_malloc(size_t size)
     { asize = DSIZE * ((size + (DSIZE) + (DSIZE - 1)) / DSIZE); } //line:vm:mm:sizeadjust3
 
     /* Search the free list for a fit */
-    if (free_listp != NULL && (bp = find_fit(asize)) != NULL)    //line:vm:mm:findfitcall
+    if ((bp = find_fit(asize)) != NULL)    //line:vm:mm:findfitcall
     {
         place(bp, asize);                  //line:vm:mm:findfitplace
         return bp;
@@ -173,18 +177,7 @@ void mm_free(void *bp)
 
     PUT(HDRP(bp), PACK(size, 0));
     PUT(FTRP(bp), PACK(size, 0));
-    PUTADDRESS(PREDP(bp), free_listt);
-    PUTADDRESS(SUCCP(bp), NULL);
-    if (free_listt != NULL)
-    {
-        PUTADDRESS(SUCCP(free_listt), bp);
-    }
-
-    free_listt = bp;
-    if (free_listp == NULL)
-    {
-        free_listp = free_listt;
-    }
+    infrblock(bp);
     coalesce(bp);
 }
 
@@ -207,21 +200,29 @@ static void *coalesce(void *bp)
     else if (prev_alloc && !next_alloc)        /* Case 2 */
     {
         size += GET_SIZE(HDRP(NEXT_BLKP(bp)));
-        if (GET_SIZE(HDRP(NEXT_BLKP(bp))) > 0)
-        {
-            flrmblock(NEXT_BLKP(bp));
-        }
+
+        rmfrblock(NEXT_BLKP(bp));
+        rmfrblock(bp);
+
         PUT(HDRP(bp), PACK(size, 0));
         PUT(FTRP(bp), PACK(size, 0));
+
+        infrblock(bp);
     }
 
     else if (!prev_alloc && next_alloc)        /* Case 3 */
     {
         size += GET_SIZE(HDRP(PREV_BLKP(bp)));
+
+        rmfrblock(bp);
+        rmfrblock(PREV_BLKP(bp));
+
         PUT(FTRP(bp), PACK(size, 0));
         PUT(HDRP(PREV_BLKP(bp)), PACK(size, 0));
-        flrmblock(bp);
+
         bp = PREV_BLKP(bp);
+
+        infrblock(bp);
 
     }
 
@@ -230,24 +231,18 @@ static void *coalesce(void *bp)
         size += GET_SIZE(HDRP(PREV_BLKP(bp))) +
                 GET_SIZE(FTRP(NEXT_BLKP(bp)));
 
-        flrmblock(bp);
-        flrmblock(NEXT_BLKP(bp));
+        rmfrblock(bp);
+        rmfrblock(NEXT_BLKP(bp));
+        rmfrblock(PREV_BLKP(bp));
 
         PUT(HDRP(PREV_BLKP(bp)), PACK(size, 0));
         PUT(FTRP(NEXT_BLKP(bp)), PACK(size, 0));
+
         bp = PREV_BLKP(bp);
+
+        infrblock(bp);
     }
 
-    /* $end mmfree */
-#ifdef NEXT_FIT
-
-    /* Make sure the rover isn't pointing into the free block */
-    /* that we just coalesced */
-    if ((rover > (char *)bp) && (rover < NEXT_BLKP(bp)))
-    { rover = bp; }
-
-#endif
-    /* $begin mmfree */
     return bp;
 }
 /* $end mmfree */
@@ -299,20 +294,7 @@ void *mm_realloc(void *ptr, size_t size)
  */
 void mm_checkheap(int verbose)
 {
-    if (verbose > 0)
-    {
-        char * free_list_ptr = free_listp;
-        for (; free_list_ptr != NULL; free_list_ptr = NEXT_FREE_BLKP(free_list_ptr))
-        {
-            if (free_list_ptr == free_listt)
-            {
-                printf("heap is consistent!\n");
-                return;
-            }
-        }
-        printf("heap is inconsistent\n");
-        exit(0);
-    }
+    checkheap(verbose);
 }
 
 /*
@@ -337,14 +319,8 @@ static void *extend_heap(size_t words)
     /* Initialize free block header/footer and the epilogue header */
     PUT(HDRP(bp), PACK(size, 0));         /* Free block header */   //line:vm:mm:freeblockhdr
     PUT(FTRP(bp), PACK(size, 0));         /* Free block footer */   //line:vm:mm:freeblockftr
-    PUTADDRESS(PREDP(bp), (char *)free_listt);
-    PUTADDRESS(SUCCP(bp), NULL);
-    free_listt = bp;
-    if (free_listp == NULL)
-    {
-        free_listp = free_listt;
-    }
     PUT(HDRP(NEXT_BLKP(bp)), PACK(0, 1)); /* New epilogue header */ //line:vm:mm:newepihdr
+    infrblock(bp);
 
     /* Coalesce if the previous block was free */
     return coalesce(bp);                                          //line:vm:mm:returnblock
@@ -361,57 +337,24 @@ static void place(void *bp, size_t asize)
 /* $end mmplace-proto */
 {
     size_t csize = GET_SIZE(HDRP(bp));
+    assert(csize >= asize);
+
+    rmfrblock(bp);
 
     if ((csize - asize) >= (3 * DSIZE))
     {
-        char *oldbp = bp;
         PUT(HDRP(bp), PACK(asize, 1));
         PUT(FTRP(bp), PACK(asize, 1));
 
         bp = NEXT_BLKP(bp);
         PUT(HDRP(bp), PACK(csize - asize, 0));
         PUT(FTRP(bp), PACK(csize - asize, 0));
-
-        if (oldbp == free_listp)
-        {
-            PUTADDRESS(PREDP(bp), NULL);
-            PUTADDRESS(SUCCP(bp), NEXT_FREE_BLKP(oldbp));
-            if (NEXT_FREE_BLKP(bp) != NULL)
-            {
-                PUTADDRESS(PREDP(NEXT_FREE_BLKP(bp)), bp);
-            }
-
-            free_listp = bp;
-
-            if (oldbp == free_listt)
-            {
-                free_listt = free_listp;
-            }
-        }
-        else if(oldbp == free_listt)
-        {
-            PUTADDRESS(PREDP(bp), PREV_FREE_BLKP(oldbp));
-            PUTADDRESS(SUCCP(bp), NULL);
-            if (PREV_FREE_BLKP(bp) != NULL)
-            {
-                PUTADDRESS(SUCCP(PREV_FREE_BLKP(bp)), bp);
-            }
-            free_listt = bp;
-        }
-        else
-        {
-            PUTADDRESS(PREDP(bp), PREV_FREE_BLKP(oldbp));
-            PUTADDRESS(SUCCP(bp), NEXT_FREE_BLKP(oldbp));
-            PUTADDRESS(PREDP(NEXT_FREE_BLKP(bp)), bp);
-            PUTADDRESS(SUCCP(PREV_FREE_BLKP(bp)), bp);
-        }
-
+        infrblock(bp);
     }
     else
     {
         PUT(HDRP(bp), PACK(csize, 1));
         PUT(FTRP(bp), PACK(csize, 1));
-        flrmblock(bp);
     }
 }
 /* $end mmplace */
@@ -424,43 +367,30 @@ static void place(void *bp, size_t asize)
 static void *find_fit(size_t asize)
 /* $end mmfirstfit-proto */
 {
-    /* $end mmfirstfit */
-
-#ifdef NEXT_FIT
-    /* Next fit search */
-    char *oldrover = rover;
-
-    /* Search from the rover to the end of list */
-    for ( ; rover != NULL; rover = NEXT_FREE_BLKP(rover))
-        if (!GET_ALLOC(HDRP(rover)) && (asize <= GET_SIZE(HDRP(rover))))
-        {
-            return rover;
-        }
-
-    /* search from start of list to old rover */
-    for (rover = oldrover; rover != NULL; rover = PREV_FREE_BLKP(rover))
-        if (!GET_ALLOC(HDRP(rover)) && (asize <= GET_SIZE(HDRP(rover))))
-        {
-            return rover;
-        }
-
-    return NULL;  /* no fit found */
-#else
-    /* $begin mmfirstfit */
     /* First fit search */
     void *bp;
+    int list = 0;
+    size_t size = asize;
 
-    for (bp = free_listp; bp != NULL; bp = NEXT_FREE_BLKP(bp))
+    while(list < LISTNUM - 1 && size > 1)
     {
-        if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp))))
+        size >>= 1;
+        list++;
+    }
+
+    while(list < LISTNUM) {
+
+        for (bp = free_lists[list]; bp != NULL; bp = NEXT_FREE_BLKP(bp))
         {
-            return bp;
+            if (asize <= GET_SIZE(HDRP(bp)))
+            {
+                return bp;
+            }
         }
+        list++;
     }
 
     return NULL; /* No fit */
-    /* $end mmfirstfit */
-#endif
 }
 
 static void printblock(void *bp)
@@ -523,22 +453,85 @@ void checkheap(int verbose)
     { printf("Bad epilogue header\n"); }
 }
 
-static void flrmblock(void *bp)
+static void infrblock(void *bp)
+{
+    size_t size = GET_SIZE(HDRP(bp));
+    void *nextptr = NULL;
+    void *prevptr = NULL;
+    int list = 0;
+
+    while(list < LISTNUM - 1 && size > 1)
+    {
+        size >>= 1;
+        list++;
+    }
+
+    size = GET_SIZE(HDRP(bp));
+
+    nextptr = free_lists[list];
+
+    while(nextptr != NULL && size > GET_SIZE(HDRP(nextptr))) {
+        prevptr = nextptr;
+        nextptr = NEXT_FREE_BLKP(nextptr);
+    }
+
+    if (nextptr != NULL)
+    {
+        if (prevptr != NULL)
+        {
+            PUTADDRESS(SUCCP(prevptr), bp);
+            PUTADDRESS(PREDP(bp), prevptr);
+            PUTADDRESS(SUCCP(bp), nextptr);
+            PUTADDRESS(PREDP(nextptr), bp);
+        }
+        else
+        {
+            PUTADDRESS(PREDP(bp), NULL);
+            PUTADDRESS(SUCCP(bp), nextptr);
+            PUTADDRESS(PREDP(nextptr), bp);
+            free_lists[list] = bp;
+        }
+    }
+    else
+    {
+        if (prevptr != NULL)
+        {
+            PUTADDRESS(SUCCP(prevptr), bp);
+            PUTADDRESS(PREDP(bp), prevptr);
+            PUTADDRESS(SUCCP(bp), NULL);
+        }
+        else
+        {
+            PUTADDRESS(SUCCP(bp), NULL);
+            PUTADDRESS(PREDP(bp), NULL);
+            free_lists[list] = bp;
+        }
+    }
+}
+static void rmfrblock(void *bp)
 {
 
-    if (bp != free_listp)
+    if (PREV_FREE_BLKP(bp) != NULL)
     {
         PUTADDRESS(SUCCP(PREV_FREE_BLKP(bp)), NEXT_FREE_BLKP(bp));
     }
     else
     {
-        if (free_listp == free_listt)
+        size_t size = GET_SIZE(HDRP(bp));
+        int list = 0;
+
+        while(list < LISTNUM - 1 && size > 1)
         {
-            free_listp = NULL;
-            free_listt = free_listp;
+            size >>= 1;
+            list++;
+        }
+
+        if (NEXT_FREE_BLKP(bp) == NULL)
+        {
+            free_lists[list] = NULL;
             return;
         }
-        free_listp = NEXT_FREE_BLKP(bp);
+        free_lists[list] = NEXT_FREE_BLKP(bp);
     }
 
     if (NEXT_FREE_BLKP(bp) != NULL)
@@ -547,6 +540,6 @@ static void flrmblock(void *bp)
     }
     else
     {
-        free_listt = PREV_FREE_BLKP(bp);
+        PUTADDRESS(SUCCP(PREV_FREE_BLKP(bp)), NULL);
     }
 }

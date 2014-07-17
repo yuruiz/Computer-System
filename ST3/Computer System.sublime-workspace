@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"free",
+				"free_listt"
+			],
+			[
+				"freelitp",
+				"free_listp"
+			],
+			[
+				"freelit",
+				"free_listp"
+			],
+			[
+				"frelip",
+				"free_listp"
+			],
+			[
 				"target",
 				"Target"
 			],
@@ -498,40 +514,48 @@
 			[
 				"ass",
 				"assert_equal"
-			],
-			[
-				"parse",
-				"parse_verb"
-			],
-			[
-				"verb",
-				"verb"
-			],
-			[
-				"s",
-				"shift"
-			],
-			[
-				"try",
-				"try	Try/Except"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/mm.c",
+			"settings":
+			{
+				"buffer_size": 14470,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/config.h",
+			"settings":
+			{
+				"buffer_size": 3062,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 115.0,
+		"height": 357.0,
 		"selected_items":
 		[
+			[
+				"clean",
+				"Build: Clean"
+			],
+			[
+				"change",
+				"Git: Change Branch"
+			],
 			[
 				"push",
 				"Git: Push"
 			],
 			[
-				"comm",
+				"com",
 				"Git: Commit"
 			],
 			[
@@ -539,12 +563,24 @@
 				"Git: Add..."
 			],
 			[
-				"git",
-				"Git: Init"
+				"new",
+				"Git: New Branch"
 			],
 			[
-				"clean",
+				"bra",
+				"Git: New Branch"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"clea",
 				"Build: Clean"
+			],
+			[
+				"git",
+				"Git: Init"
 			],
 			[
 				"buil",
@@ -607,10 +643,6 @@
 				"Git: Pull"
 			],
 			[
-				"change",
-				"Git: Change Branch"
-			],
-			[
 				"sta",
 				"View: Toggle Status Bar"
 			],
@@ -651,10 +683,6 @@
 				"Git: Push"
 			],
 			[
-				"new",
-				"Git: New Branch"
-			],
-			[
 				"stas",
 				"Git: Stash Changes"
 			],
@@ -689,14 +717,6 @@
 			[
 				"pa",
 				"Package Control: List Packages"
-			],
-			[
-				"com",
-				"Git: Commit"
-			],
-			[
-				"bra",
-				"Git: Change Branch"
 			],
 			[
 				"CHANGE",
@@ -1033,10 +1053,6 @@
 			[
 				"syntax py",
 				"Set Syntax: Python"
-			],
-			[
-				"repl",
-				"SublimeREPL: Python"
 			]
 		],
 		"width": 579.0
@@ -1061,6 +1077,7 @@
 	},
 	"file_history":
 	[
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/Makefile",
 		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/bits.c",
 		"/Users/WITAN/Documents/School/Computer System/Assignments/datalab-handout/Makefile",
 		"/Users/WITAN/Documents/School/Computer System/Assignments/.gitignore",
@@ -1187,8 +1204,7 @@
 		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
 		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/log",
 		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/train.label",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/test.label",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/train.data"
+		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/test.label"
 	],
 	"find":
 	{
@@ -1210,6 +1226,31 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"place",
+			"free_listp",
+			"extend_heap",
+			"free_listp",
+			"free_listp =",
+			"place",
+			"extend_heap",
+			"coalesce",
+			"Coalesce",
+			"coalesce",
+			"flrmblock",
+			"coalesce",
+			"extend_heap",
+			"coalesce",
+			"Coalesce",
+			"coalesce",
+			"Coalesce",
+			"coalesce",
+			"flrmblock",
+			"));\n",
+			"flrmblock",
+			"free_listp =",
+			"free_listp",
+			"place",
+			"extend_heap",
 			"exp",
 			"x",
 			"x_msb",
@@ -1312,32 +1353,7 @@
 			"”",
 			"obeserved",
 			"vechicle",
-			"becasue",
-			"whichi",
-			"safty",
-			"history",
-			"deivce",
-			"TERM_NUM",
-			"TRAIN_TERM_NUM",
-			"TERM_NUM",
-			"TRAIN_TERM_NUM",
-			",\n",
-			"TRAIN_TERM_NUM",
-			"TEST_DOC_NUM",
-			"TRAIN_TERM_NUM",
-			" print logLikelihood_data[0][0]\n    print logLikelihood_data[1][0]",
-			"label",
-			"logLikelihood_data",
-			"TERM_NUM",
-			"0",
-			"i",
-			"array",
-			"loadtxt",
-			"x",
-			"10",
-			"matplotlib.pyplot",
-			"plot",
-			"script"
+			"becasue"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1355,8 +1371,371 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/mm.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14470,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8039,
+								8039
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+										"PATH": "/usr/local/bin:/usr/local/sbin:$PATH",
+										"PYTHONPATH": "/usr/local/lib/python2.7/site-packages:/usr/local/lib/python:$PYTHONPATH"
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"origin_encoding": "ASCII",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1633.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/config.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3062,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1130,
+								1130
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+										"PATH": "/usr/local/bin:/usr/local/sbin:$PATH",
+										"PYTHONPATH": "/usr/local/lib/python2.7/site-packages:/usr/local/lib/python:$PYTHONPATH"
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"origin_encoding": "ASCII",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1936,7 +2315,7 @@
 		[
 			[
 				"",
-				"~/Documents/School/Coursera-Cryptography/Cryptography/ST3/Cryptography.sublime-project"
+				"~/Documents/Code/Deedy-Resume/ST3/Resume.sublime-project"
 			],
 			[
 				"ns",

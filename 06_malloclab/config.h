@@ -81,13 +81,13 @@
 #define MIN_SPACE       0.60
 
 
-/* 
+/*
  * Students can get more points for building faster allocators, up to
  * this point (in ops / sec)
  */
 #define MAX_SPEED       13000E3
 
-/* 
+/*
  * Students can get more points for building more efficient allocators,
  * up to this point (1 is perfect).
  */

@@ -1,8 +1,8 @@
 #
 # Makefile for the malloc lab driver
 #
-CC = /usr/local/Cellar/gcc44/4.4.7/bin/x86_64-apple-darwin13.3.0-gcc-4.4.7
-CFLAGS = -Wall -Wextra -Werror -O2 -g -DDRIVER -std=gnu99
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -O2 -g -DDRIVER -std=gnu99 -Wno-error=deprecated-declarations
 
 OBJS = mdriver.o mm.o memlib.o fsecs.o fcyc.o clock.o ftimer.o
 
