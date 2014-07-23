@@ -12,18 +12,15 @@ static const char *accept_hdr = "Accept: text/html,application/xhtml+xml,applica
 static const char *accept_encoding_hdr = "Accept-Encoding: gzip, deflate\r\n";
 static const char *connection_hdr = "Connection: close\r\n";
 static const char *proxy_connection_hdr = "Proxy-Connection: close\r\n";
+static const char *http_version = "HTTP/1.1\r\n";
 
 static void doit(int fd);
-static void read_requesthdrs(rio_t *rp);
-static int parse_uri(char *uri, char *filename, char *cgiargs);
-static void serve_static(int fd, char *filename, int filesize);
-static void get_filetype(char *filename, char *filetype);
-static void serve_dynamic(int fd, char *filename, char *cgiargs);
+static void make_requesthdrs(rio_t *rp, char *hdr);
+static int parse_uri(char* uri, char *host, int *port, char *page);
 static void clienterror(int fd, char *cause, char *errnum, char *shortmsg, char *longmsg);
 
 int main(int argc, char **argv)
 {
-    // printf("%s%s%s", user_agent_hdr, accept_hdr, accept_encoding_hdr);
 
     int listenfd, connfd, port, clientlen;
     struct sockaddr_in clientaddr;
@@ -57,10 +54,10 @@ int main(int argc, char **argv)
 /* $begin doit */
 static void doit(int fd)
 {
-    int is_static;
+    int dest_ip;
     struct stat sbuf;
-    char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE];
-    char filename[MAXLINE], cgiargs[MAXLINE];
+    char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE], hdr[MAXLINE];
+    char dest_host[MAXLINE], dest_page[MAXLINE];
     rio_t rio;
 
     /* Read request line and headers */
@@ -68,176 +65,104 @@ static void doit(int fd)
     Rio_readlineb(&rio, buf, MAXLINE);
     sscanf(buf, "%s %s %s", method, uri, version);
 
-    if (strcasecmp(method, "GET"))
-    {
-        clienterror(fd, method, "501", "Not Implemented",
-                    "Tiny does not implement this method");
-        return;
-    }
-
-    read_requesthdrs(&rio);
-
+    memset(hdr, 0, MAXLINE);
     /* Parse URI from GET request */
-    is_static = parse_uri(uri, filename, cgiargs);
+    c = parse_uri(uri, dest_host, &dest_ip, dest_page)
 
-    if (stat(filename, &sbuf) < 0)
+    if (c < 0)
     {
-        clienterror(fd, filename, "404", "Not found",
-                    "Tiny couldn't find this file");
+        clienterror(fd, method, "404", "Host address wrong", "Something is wrong with the address");
+    }
+
+    if (strcasecmp(method, "GET")) {
+       clienterror(fd, method, "501", "Not Implemented",
+                "Tiny does not implement this method");
         return;
     }
 
-    if (is_static)   /* Serve static content */
-    {
-        if (!(S_ISREG(sbuf.st_mode)) || !(S_IRUSR & sbuf.st_mode))
-        {
-            clienterror(fd, filename, "403", "Forbidden",
-                        "Tiny couldn't read the file");
-            return;
-        }
+    sprintf(hdr, "%s %s %s\r\n", method, page, http_version);
+    sprintf(hdr, "Host: %s\r\n", dest_host);
 
-        serve_static(fd, filename, sbuf.st_size);
-    }
-    else   /* Serve dynamic content */
-    {
-        if (!(S_ISREG(sbuf.st_mode)) || !(S_IXUSR & sbuf.st_mode))
-        {
-            clienterror(fd, filename, "403", "Forbidden",
-                        "Tiny couldn't run the CGI program");
-            return;
-        }
+    make_requesthdrs(&rio, hdr);
 
-        serve_dynamic(fd, filename, cgiargs);
-    }
+
 }
 /* $end doit */
 
 /*
- * read_requesthdrs - read and parse HTTP request headers
+ * make_requesthdrs - read and parse HTTP request headers
  */
-/* $begin read_requesthdrs */
-static void read_requesthdrs(rio_t *rp)
+/* $begin make_requesthdrs */
+static void make_requesthdrs(rio_t *rp, char *hdr)
 {
     char buf[MAXLINE];
 
     Rio_readlineb(rp, buf, MAXLINE);
-    printf("%s", buf);
 
     while (strcmp(buf, "\r\n"))
     {
+        if (strstr(buf, "User-Agent:"))
+        {continue;}
+
+        if (strstr(buf, "Accept:"))
+        {continue;}
+
+        if (strstr(buf, "Accept-Encoding:"))
+        {continue;}
+
+        if (strstr(buf, "Connection:"))
+        {continue;}
+
+        if (strstr(buf, "Proxy-Connection:"))
+        {continue;}
+
+        strcat(hdr, buf);
+
         Rio_readlineb(rp, buf, MAXLINE);
-        printf("%s", buf);
     }
+
+    strcat(hdr, user_agent_hdr);
+    strcat(hdr, accept_hdr);
+    strcat(hdr, accept_encoding_hdr);
+    strcat(hdr, connection_hdr);
+    strcat(hdr, proxy_connection_hdr);
+    strcat(hdr, "\r\n");
 
     return;
 }
-/* $end read_requesthdrs */
+/* $end make_requesthdrs */
 
 /*
  * parse_uri - parse URI into filename and CGI args
  *             return 0 if dynamic content, 1 if static
  */
 /* $begin parse_uri */
-static int parse_uri(char *uri, char *filename, char *cgiargs)
+static int parse_uri(char* uri, char *host, int *port, char *page)
 {
     char *ptr;
 
-    if (!strstr(uri, "cgi-bin"))    /* Static content */
+    memset(host, 0, MAXLINE);
+    memset(page, 0, page);
+    *port = 0;
+
+    if (strstr(uri, "http://"))
     {
-        strcpy(cgiargs, "");
-        strcpy(filename, ".");
-        strcat(filename, uri);
+        if (sscanf(uri, "http://%199[^:]:%i/%199[^\n]", host, port, page) == 3)
+            { return 1;}
+        else if (sscanf(uri, "http://%199[^/]/%199[^\n]", host, page) == 2)
+            { return 2;}
+        else if (sscanf(uri, "http://%199[^:]:%i[^\n]", host, port) == 2)
+            { return 3;}
+        else if (sscanf(uri, "http://%199[^\n]", host) == 1)
+            { return 4;}
 
-        if (uri[strlen(uri) - 1] == '/')
-        { strcat(filename, "home.html"); }
-
-        return 1;
+        return -1;
     }
-    else    /* Dynamic content */
-    {
-        ptr = index(uri, '?');
 
-        if (ptr)
-        {
-            strcpy(cgiargs, ptr + 1);
-            *ptr = '\0';
-        }
-        else
-        { strcpy(cgiargs, ""); }
-
-        strcpy(filename, ".");
-        strcat(filename, uri);
-        return 0;
-    }
+    strcpy(page, uri);
+    return 0;
 }
 /* $end parse_uri */
-
-/*
- * serve_static - copy a file back to the client
- */
-/* $begin serve_static */
-static void serve_static(int fd, char *filename, int filesize)
-{
-    int srcfd;
-    char *srcp, filetype[MAXLINE], buf[MAXBUF];
-
-    /* Send response headers to client */
-    get_filetype(filename, filetype);
-    sprintf(buf, "HTTP/1.0 200 OK\r\n");
-    sprintf(buf, "%sServer: Tiny Web Server\r\n", buf);
-    sprintf(buf, "%sContent-length: %d\r\n", buf, filesize);
-    sprintf(buf, "%sContent-type: %s\r\n\r\n", buf, filetype);
-    Rio_writen(fd, buf, strlen(buf));
-
-    /* Send response body to client */
-    srcfd = Open(filename, O_RDONLY, 0);
-    srcp = Mmap(0, filesize, PROT_READ, MAP_PRIVATE, srcfd, 0);
-    Close(srcfd);
-    Rio_writen(fd, srcp, filesize);
-    Munmap(srcp, filesize);
-}
-
-/*
- * get_filetype - derive file type from file name
- */
-static void get_filetype(char *filename, char *filetype)
-{
-    if (strstr(filename, ".html"))
-    { strcpy(filetype, "text/html"); }
-    else if (strstr(filename, ".gif"))
-    { strcpy(filetype, "image/gif"); }
-    else if (strstr(filename, ".jpg"))
-    { strcpy(filetype, "image/jpeg"); }
-    else
-    { strcpy(filetype, "text/plain"); }
-}
-/* $end serve_static */
-
-/*
- * serve_dynamic - run a CGI program on behalf of the client
- */
-/* $begin serve_dynamic */
-static void serve_dynamic(int fd, char *filename, char *cgiargs)
-{
-    char buf[MAXLINE], *emptylist[] = { NULL };
-
-    /* Return first part of HTTP response */
-    sprintf(buf, "HTTP/1.0 200 OK\r\n");
-    Rio_writen(fd, buf, strlen(buf));
-    sprintf(buf, "Server: Tiny Web Server\r\n");
-    Rio_writen(fd, buf, strlen(buf));
-
-    if (Fork() == 0)   /* child */
-    {
-        /* Real server would set all CGI vars here */
-        setenv("QUERY_STRING", cgiargs, 1);
-        Dup2(fd, STDOUT_FILENO);         /* Redirect stdout to client */
-        Execve(filename, emptylist, environ); /* Run CGI program */
-    }
-
-    Wait(NULL); /* Parent waits for and reaps child */
-}
-/* $end serve_dynamic */
 
 /*
  * clienterror - returns an error message to the client
