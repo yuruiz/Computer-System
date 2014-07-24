@@ -54,11 +54,12 @@ int main(int argc, char **argv)
 /* $begin doit */
 static void doit(int fd)
 {
-    int dest_ip;
+    int dest_port;
+    int dest_fd;
     struct stat sbuf;
     char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE], hdr[MAXLINE];
-    char dest_host[MAXLINE], dest_page[MAXLINE];
-    rio_t rio;
+    char dest_host[MAXLINE], dest_page[MAXLINE], content[MAXLINE];
+    rio_t rio, dest_rio;
 
     /* Read request line and headers */
     Rio_readinitb(&rio, fd);
@@ -67,23 +68,29 @@ static void doit(int fd)
 
     memset(hdr, 0, MAXLINE);
     /* Parse URI from GET request */
-    c = parse_uri(uri, dest_host, &dest_ip, dest_page)
 
-    if (c < 0)
+    if (parse_uri(uri, dest_host, &dest_port, dest_page) < 0)
     {
         clienterror(fd, method, "404", "Host address wrong", "Something is wrong with the address");
     }
 
     if (strcasecmp(method, "GET")) {
-       clienterror(fd, method, "501", "Not Implemented",
-                "Tiny does not implement this method");
+       clienterror(fd, method, "501", "Not Implemented", "Tiny does not implement this method");
         return;
     }
 
-    sprintf(hdr, "%s %s %s\r\n", method, page, http_version);
+    sprintf(hdr, "%s %s %s\r\n", method, dest_page, http_version);
     sprintf(hdr, "Host: %s\r\n", dest_host);
 
     make_requesthdrs(&rio, hdr);
+
+    dest_fd = open_clientfd(dest_host, dest_port);
+    Rio_readinitb(&dest_rio, dest_fd);
+    Rio_writen(dest_fd, hdr, strlen(hdr));
+
+    while(Rio_readlineb(&dest_rio, content, MAXLINE) > 0) {
+        Rio_writen(fd, content, strlen(content));
+    }
 
 
 }
@@ -142,7 +149,7 @@ static int parse_uri(char* uri, char *host, int *port, char *page)
     char *ptr;
 
     memset(host, 0, MAXLINE);
-    memset(page, 0, page);
+    memset(page, 0, MAXLINE);
     *port = 0;
 
     if (strstr(uri, "http://"))
