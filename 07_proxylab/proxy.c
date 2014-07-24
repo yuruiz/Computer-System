@@ -92,6 +92,8 @@ static void doit(int fd)
         Rio_writen(fd, content, strlen(content));
     }
 
+    Close(dest_fd);
+
 
 }
 /* $end doit */
