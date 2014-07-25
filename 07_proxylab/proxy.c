@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "csapp.h"
 
+#define DEBUG
 /* Recommended max cache and object sizes */
 #define MAX_CACHE_SIZE 1049000
 #define MAX_OBJECT_SIZE 102400
@@ -16,7 +17,7 @@ static const char *http_version = "HTTP/1.1\r\n";
 
 static void doit(int fd);
 static void make_requesthdrs(rio_t *rp, char *hdr);
-static int parse_uri(char* uri, char *host, int *port, char *page);
+static int parse_uri(char *uri, char *host, int *port, char *page);
 static void clienterror(int fd, char *cause, char *errnum, char *shortmsg, char *longmsg);
 
 int main(int argc, char **argv)
@@ -35,11 +36,13 @@ int main(int argc, char **argv)
     port = atoi(argv[1]);
 
     listenfd = Open_listenfd(port);
+    printf("now listening in port %d\n", port);
 
     while (1)
     {
         clientlen = sizeof(clientaddr);
         connfd = Accept(listenfd, (SA *)&clientaddr, (socklen_t *)&clientlen);
+        printf("receive connection from %s\n", inet_ntoa(clientaddr.sin_addr));
         doit(connfd);
         Close(connfd);
     }
@@ -54,9 +57,8 @@ int main(int argc, char **argv)
 /* $begin doit */
 static void doit(int fd)
 {
-    int dest_port;
+    int dest_port = 0;
     int dest_fd;
-    struct stat sbuf;
     char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE], hdr[MAXLINE];
     char dest_host[MAXLINE], dest_page[MAXLINE], content[MAXLINE];
     rio_t rio, dest_rio;
@@ -65,6 +67,7 @@ static void doit(int fd)
     Rio_readinitb(&rio, fd);
     Rio_readlineb(&rio, buf, MAXLINE);
     sscanf(buf, "%s %s %s", method, uri, version);
+    printf("The request is: %s\n", buf);
 
     memset(hdr, 0, MAXLINE);
     /* Parse URI from GET request */
@@ -72,29 +75,59 @@ static void doit(int fd)
     if (parse_uri(uri, dest_host, &dest_port, dest_page) < 0)
     {
         clienterror(fd, method, "404", "Host address wrong", "Something is wrong with the address");
+        printf("host address wrong\n");
     }
 
-    if (strcasecmp(method, "GET")) {
-       clienterror(fd, method, "501", "Not Implemented", "Tiny does not implement this method");
+    if (strcasecmp(method, "GET"))
+    {
+        clienterror(fd, method, "501", "Not Implemented", "Tiny does not implement this method");
+        printf("Method not implemented\n");
         return;
     }
 
-    sprintf(hdr, "%s %s %s\r\n", method, dest_page, http_version);
-    sprintf(hdr, "Host: %s\r\n", dest_host);
+    // sprintf(dest_page, "/%s", dest_page);
+    sprintf(hdr, "%s /%s %s", method, dest_page, http_version);
+    // sprintf(hdr, "Host: %s\r\n", dest_host);
 
     make_requesthdrs(&rio, hdr);
+    printf("request header is:\n%s\n", hdr);
 
-    dest_fd = open_clientfd(dest_host, dest_port);
+    if (dest_port == 0)
+    {
+        dest_port = 80;
+    }
+
+    if ((dest_fd = open_clientfd(dest_host, dest_port)) < 0)
+    {
+        switch (dest_fd)
+        {
+            case -1:
+                unix_error("Cannot make the connection");
+                break;
+
+            case -2:
+                dns_error("DNS Error");
+                break;
+        }
+
+        return;
+    }
+
+    printf("connection to %s:%d success!\n", dest_host, dest_port);
     Rio_readinitb(&dest_rio, dest_fd);
     Rio_writen(dest_fd, hdr, strlen(hdr));
 
-    while(Rio_readlineb(&dest_rio, content, MAXLINE) > 0) {
+    // printf("The web content is as below: \n");
+
+    while (Rio_readlineb(&dest_rio, content, MAXLINE) > 0)
+    {
         Rio_writen(fd, content, strlen(content));
+        // printf("%s\n", content);
     }
 
+
+    printf("connection to sever %s closed\n", dest_host);
     Close(dest_fd);
-
-
 }
 /* $end doit */
 
@@ -108,33 +141,66 @@ static void make_requesthdrs(rio_t *rp, char *hdr)
 
     Rio_readlineb(rp, buf, MAXLINE);
 
-    while (strcmp(buf, "\r\n"))
+    int ua = 0, ac = 0, ae = 0, cn = 0, pc = 0;
+
+    while (strcmp(buf, "\r\n") && strcmp(buf, "\n"))
     {
         if (strstr(buf, "User-Agent:"))
-        {continue;}
-
-        if (strstr(buf, "Accept:"))
-        {continue;}
-
-        if (strstr(buf, "Accept-Encoding:"))
-        {continue;}
-
-        if (strstr(buf, "Connection:"))
-        {continue;}
-
-        if (strstr(buf, "Proxy-Connection:"))
-        {continue;}
-
-        strcat(hdr, buf);
+        {
+            ua = 1;
+            strcat(hdr, user_agent_hdr);
+        }
+        else if (strstr(buf, "Accept:"))
+        {
+            ac = 1;
+            strcat(hdr, accept_hdr);
+        }
+        else if (strstr(buf, "Accept-Encoding:"))
+        {
+            ae = 1;
+            strcat(hdr, accept_encoding_hdr);
+        }
+        else if (strstr(buf, "Connection:"))
+        {
+            cn = 1;
+            strcat(hdr, connection_hdr);
+        }
+        else if (strstr(buf, "Proxy-Connection:"))
+        {
+            pc = 1;
+            strcat(hdr, proxy_connection_hdr);
+        }
+        else
+        {strcat(hdr, buf);}
 
         Rio_readlineb(rp, buf, MAXLINE);
     }
 
-    strcat(hdr, user_agent_hdr);
-    strcat(hdr, accept_hdr);
-    strcat(hdr, accept_encoding_hdr);
-    strcat(hdr, connection_hdr);
-    strcat(hdr, proxy_connection_hdr);
+    if (!ua)
+    {
+        strcat(hdr, user_agent_hdr);
+    }
+
+    if (!ac)
+    {
+        strcat(hdr, accept_hdr);
+    }
+
+    if (!ae)
+    {
+        strcat(hdr, accept_encoding_hdr);
+    }
+
+    if (!cn)
+    {
+        strcat(hdr, connection_hdr);
+    }
+
+    if (!pc)
+    {
+        strcat(hdr, proxy_connection_hdr);
+    }
+
     strcat(hdr, "\r\n");
 
     return;
@@ -146,10 +212,8 @@ static void make_requesthdrs(rio_t *rp, char *hdr)
  *             return 0 if dynamic content, 1 if static
  */
 /* $begin parse_uri */
-static int parse_uri(char* uri, char *host, int *port, char *page)
+static int parse_uri(char *uri, char *host, int *port, char *page)
 {
-    char *ptr;
-
     memset(host, 0, MAXLINE);
     memset(page, 0, MAXLINE);
     *port = 0;
@@ -157,13 +221,13 @@ static int parse_uri(char* uri, char *host, int *port, char *page)
     if (strstr(uri, "http://"))
     {
         if (sscanf(uri, "http://%199[^:]:%i/%199[^\n]", host, port, page) == 3)
-            { return 1;}
+        { return 1;}
         else if (sscanf(uri, "http://%199[^/]/%199[^\n]", host, page) == 2)
-            { return 2;}
+        { return 2;}
         else if (sscanf(uri, "http://%199[^:]:%i[^\n]", host, port) == 2)
-            { return 3;}
+        { return 3;}
         else if (sscanf(uri, "http://%199[^\n]", host) == 1)
-            { return 4;}
+        { return 4;}
 
         return -1;
     }
