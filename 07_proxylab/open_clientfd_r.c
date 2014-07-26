@@ -10,14 +10,16 @@ int open_clientfd_r(char *hostname, char *port) {
 
     /* Create the socket descriptor */
     if ((clientfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        printf("cannot open the socket\n");
         return -1;
     }
 
     /* Get a list of addrinfo structs */
     if ((rv = getaddrinfo(hostname, port, NULL, &addlist)) != 0) {
-        return -1;
+        printf("%s %s\n", hostname, gai_strerror(rv));
+        return -2;
     }
-  
+
     /* Walk the list, using each addrinfo to try to connect */
     for (p = addlist; p; p = p->ai_next) {
         if ((p->ai_family == AF_INET)) {
@@ -25,7 +27,7 @@ int open_clientfd_r(char *hostname, char *port) {
                 break; /* success */
             }
         }
-    } 
+    }
 
     /* Clean up */
     freeaddrinfo(addlist);

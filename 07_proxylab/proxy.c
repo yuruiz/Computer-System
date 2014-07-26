@@ -16,10 +16,14 @@ static const char *proxy_connection_hdr = "Proxy-Connection: close\r\n";
 static const char *http_version = "HTTP/1.1\r\n";
 
 static void doit(int fd);
-static void make_requesthdrs(rio_t *rp, char *hdr);
+static void make_requesthdrs(rio_t *rp, char *hdr, char *host);
 static int parse_uri(char *uri, char *host, char *port, char *page);
 static void clienterror(int fd, char *cause, char *errnum, char *shortmsg, char *longmsg);
 static void *thread(void *vargp);
+
+ssize_t Rio_writen_r(int fd, void *usrbuf, size_t n);
+ssize_t Rio_readlineb_r(rio_t *rp, void *usrbuf, size_t n);
+ssize_t Rio_readnb_r(rio_t *rp, void *usrbuf, size_t n);
 
 int main(int argc, char **argv)
 {
@@ -42,13 +46,13 @@ int main(int argc, char **argv)
     port = atoi(argv[1]);
 
     listenfd = Open_listenfd(port);
-    printf("now listening in port %d\n", port);
+    // printf("now listening in port %d\n", port);
 
     while (1)
     {
         connfdp = malloc(sizeof(int));
         *connfdp = Accept(listenfd, (SA *)&clientaddr, (socklen_t *)&clientlen);
-        printf("receive connection from %s\n", inet_ntoa(clientaddr.sin_addr));
+        // printf("receive connection from %s\n", inet_ntoa(clientaddr.sin_addr));
         pthread_create(&tid, NULL, thread, connfdp);
     }
 
@@ -80,13 +84,13 @@ static void doit(int fd)
     /* Read request line and headers */
     Rio_readinitb(&rio, fd);
 
-    if(Rio_readlineb(&rio, buf, MAXLINE) <= 0)
+    if(Rio_readlineb(&rio, buf, MAXLINE) < 0)
     {
         printf("Thread %d: no data received\n", (int)pthread_self());
         return;
     }
     sscanf(buf, "%s %s %s", method, uri, version);
-    printf("Thread %d: The request is: %s\n", (int)pthread_self(), buf);
+    // printf("Thread %d: The request is: %s\n", (int)pthread_self(), buf);
 
     memset(hdr, 0, MAXLINE);
     /* Parse URI from GET request */
@@ -94,13 +98,13 @@ static void doit(int fd)
     if (parse_uri(uri, dest_host, dest_port, dest_page) < 0)
     {
         clienterror(fd, method, "404", "Host address wrong", "Something is wrong with the address");
-        printf("Thread %d: Thehost address wrong\n", (int)pthread_self());
+        // printf("Thread %d: Thehost address wrong\n", (int)pthread_self());
     }
 
     if (strcasecmp(method, "GET"))
     {
         clienterror(fd, method, "501", "Not Implemented", "Tiny does not implement this method");
-        printf("Thread %d: TheMethod not implemented\n", (int)pthread_self());
+        // printf("Thread %d: TheMethod not implemented\n", (int)pthread_self());
         return;
     }
 
@@ -108,40 +112,41 @@ static void doit(int fd)
     sprintf(hdr, "%s /%s %s", method, dest_page, http_version);
     // sprintf(hdr, "Host: %s\r\n", dest_host);
 
-    make_requesthdrs(&rio, hdr);
-    printf("Thread %d: request header is:\n%s\n", (int)pthread_self(), hdr);
+    make_requesthdrs(&rio, hdr, dest_host);
+    printf("%s\n", hdr);
 
     if ((dest_fd = open_clientfd_r(dest_host, dest_port)) <= 0)
     {
-        switch (dest_fd)
-        {
-            case 0:
-                printf("cannot open the socket\n");
-                break;
-            case -1:
-                printf("Cannot make the connection\n");
-                break;
+        // switch (dest_fd)
+        // {
+        //     case 0:
+        //         printf("0 cannot open the socket\n");
+        //         break;
+        //     case -1:
+        //         printf("-1 Cannot make the connection\n");
+        //         break;
 
-            case -2:
-                printf("DNS Error\n");
-                break;
-        }
+        //     case -2:
+        //         printf("-2 DNS Error\n");
+        //         break;
+        // }
+
 
         return;
     }
 
-    printf("Thread %d: connection to %s success!\n", (int)pthread_self(), dest_host);
+    // printf("Thread %d: connection to %s success!\n", (int)pthread_self(), dest_host);
     Rio_readinitb(&dest_rio, dest_fd);
-    Rio_writen(dest_fd, hdr, strlen(hdr));
+    Rio_writen_r(dest_fd, hdr, strlen(hdr));
 
     // printf("The web content is as below: \n");
 
     while (1)
     {
-        Rio_readlineb(&dest_rio, content, MAXLINE);
-        Rio_writen(fd, content, strlen(content));
+        Rio_readlineb_r(&dest_rio, content, MAXLINE);
+        Rio_writen_r(fd, content, strlen(content));
 
-        printf("%s", content);
+        // printf("%s", content);
 
         if (!strcmp(content, "\r\n"))
         {
@@ -149,13 +154,13 @@ static void doit(int fd)
         }
     }
 
-    while((content_size = Rio_readnb(&dest_rio, content, MAXLINE)) > 0)
+    while((content_size = Rio_readnb_r(&dest_rio, content, MAXLINE)) > 0)
     {
-        Rio_writen(fd, content, content_size);
+        Rio_writen_r(fd, content, content_size);
     }
 
 
-    printf("Thread %d: connection to %s closed\n", (int)pthread_self(), dest_host);
+    // printf("Thread %d: connection to %s closed\n", (int)pthread_self(), dest_host);
     Close(dest_fd);
 }
 /* $end doit */
@@ -164,13 +169,13 @@ static void doit(int fd)
  * make_requesthdrs - read and parse HTTP request headers
  */
 /* $begin make_requesthdrs */
-static void make_requesthdrs(rio_t *rp, char *hdr)
+static void make_requesthdrs(rio_t *rp, char *hdr, char *host)
 {
     char buf[MAXLINE];
 
-    Rio_readlineb(rp, buf, MAXLINE);
+    Rio_readlineb_r(rp, buf, MAXLINE);
 
-    int ua = 0, ac = 0, ae = 0, cn = 0, pc = 0;
+    int ua = 0, ac = 0, ae = 0, cn = 0, pc = 0, hs = 0;
 
     while (strcmp(buf, "\r\n") && strcmp(buf, "\n"))
     {
@@ -199,10 +204,15 @@ static void make_requesthdrs(rio_t *rp, char *hdr)
             pc = 1;
             strcat(hdr, proxy_connection_hdr);
         }
+        else if (strstr(buf, "Host:"))
+        {
+            strcat(hdr, buf);
+            hs = 1;
+        }
         else
         {strcat(hdr, buf);}
 
-        Rio_readlineb(rp, buf, MAXLINE);
+        Rio_readlineb_r(rp, buf, MAXLINE);
     }
 
     if (!ua)
@@ -228,6 +238,11 @@ static void make_requesthdrs(rio_t *rp, char *hdr)
     if (!pc)
     {
         strcat(hdr, proxy_connection_hdr);
+    }
+
+    if (!hs)
+    {
+        sprintf(hdr, "%sHost: %s\r\n", hdr, host);
     }
 
     strcat(hdr, "\r\n");
@@ -298,11 +313,59 @@ static void clienterror(int fd, char *cause, char *errnum,
 
     /* Print the HTTP response */
     sprintf(buf, "HTTP/1.0 %s %s\r\n", errnum, shortmsg);
-    Rio_writen(fd, buf, strlen(buf));
+    Rio_writen_r(fd, buf, strlen(buf));
     sprintf(buf, "Content-type: text/html\r\n");
-    Rio_writen(fd, buf, strlen(buf));
+    Rio_writen_r(fd, buf, strlen(buf));
     sprintf(buf, "Content-length: %d\r\n\r\n", (int)strlen(body));
-    Rio_writen(fd, buf, strlen(buf));
-    Rio_writen(fd, body, strlen(body));
+    Rio_writen_r(fd, buf, strlen(buf));
+    Rio_writen_r(fd, body, strlen(body));
 }
 /* $end clienterror */
+
+/* My own wrapper for the rio_writen which will return the value read */
+ssize_t Rio_writen_r(int fd, void *usrbuf, size_t n)
+{
+    ssize_t rv;
+
+    if ( (rv = rio_writen(fd, usrbuf, n)) != n)
+    {
+        if(errno != EPIPE)
+        {
+            unix_error("Rio_writen_r error");
+        }
+    }
+
+    return rv;
+}
+
+/* My own wrapper for the rio_readlineb_r which will return the value read */
+ssize_t Rio_readlineb_r(rio_t *rp, void *usrbuf, size_t n)
+{
+    ssize_t rc;
+
+    if ((rc = rio_readlineb(rp, usrbuf, n)) < 0)
+    {
+        if(errno != ECONNRESET)
+        {
+            unix_error("Rio_readlineb_r error");
+        }
+    }
+
+    return rc;
+}
+
+/* My own wrapper for the rio_readnb which will return the value read */
+ssize_t Rio_readnb_r(rio_t *rp, void *usrbuf, size_t n)
+{
+    ssize_t rc;
+
+    if ((rc = rio_readnb(rp, usrbuf, n)) < 0)
+    {
+        if(errno != ECONNRESET)
+        {
+            unix_error("Rio_readnb_r error");
+        }
+    }
+
+    return rc;
+}
