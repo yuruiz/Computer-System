@@ -113,7 +113,7 @@ static void doit(int fd)
     // sprintf(hdr, "Host: %s\r\n", dest_host);
 
     make_requesthdrs(&rio, hdr, dest_host);
-    printf("%s\n", hdr);
+    // printf("%s\n", hdr);
 
     if ((dest_fd = open_clientfd_r(dest_host, dest_port)) <= 0)
     {
@@ -267,13 +267,13 @@ static int parse_uri(char *uri, char *host, char *port, char *page)
 
     if (strstr(uri, "http://"))
     {
-        if (sscanf(uri, "http://%199[^:]:%i/%199[^\n]", host, &temport, page) == 3)
+        if (sscanf(uri, "http://%8192[^:]:%i/%8192[^\n]", host, &temport, page) == 3)
         { status = 1;}
-        else if (sscanf(uri, "http://%199[^/]/%199[^\n]", host, page) == 2)
+        else if (sscanf(uri, "http://%8192[^/]/%8192[^\n]", host, page) == 2)
         { status = 2;}
-        else if (sscanf(uri, "http://%199[^:]:%i[^\n]", host, &temport) == 2)
+        else if (sscanf(uri, "http://%8192[^:]:%i[^\n]", host, &temport) == 2)
         { status = 3;}
-        else if (sscanf(uri, "http://%199[^/]", host) == 1)
+        else if (sscanf(uri, "http://%8192[^/]", host) == 1)
         { status = 4;}
     }
     else

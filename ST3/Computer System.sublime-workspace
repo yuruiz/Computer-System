@@ -523,39 +523,15 @@
 			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/proxy.c",
 			"settings":
 			{
-				"buffer_size": 5479,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/Makefile",
-			"settings":
-			{
-				"buffer_size": 883,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/csapp.c",
-			"settings":
-			{
-				"buffer_size": 17716,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/mm.c",
-			"settings":
-			{
-				"buffer_size": 11241,
+				"buffer_size": 9427,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/tiny.c",
+			"file": "/Users/WITAN/Documents/School/15213 Computer System/Labs/Lab 07 - Proxy Lab/proxylab-handout/example",
 			"settings":
 			{
-				"buffer_size": 6298,
+				"buffer_size": 29914,
 				"line_ending": "Unix"
 			}
 		}
@@ -563,13 +539,9 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 115.0,
 		"selected_items":
 		[
-			[
-				"pull",
-				"Git: Pull"
-			],
 			[
 				"push",
 				"Git: Push"
@@ -581,6 +553,30 @@
 			[
 				"add",
 				"Git: Add..."
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"drop",
+				"Git: Stash Drop"
+			],
+			[
+				"pull",
+				"Git: Pull"
+			],
+			[
+				"stash",
+				"Git: Stash Changes"
+			],
+			[
+				"statu",
+				"Git: Status"
+			],
+			[
+				"pop",
+				"Git: Stash Pop"
 			],
 			[
 				"asty",
@@ -597,10 +593,6 @@
 			[
 				"PULL",
 				"Git: Pull"
-			],
-			[
-				"com",
-				"Git: Commit"
 			],
 			[
 				"rem",
@@ -671,14 +663,6 @@
 				"Package Control: Install Package"
 			],
 			[
-				"stash",
-				"Git: Stash Changes"
-			],
-			[
-				"statu",
-				"Git: Status"
-			],
-			[
 				"log",
 				"Git: Log All"
 			],
@@ -708,10 +692,6 @@
 			],
 			[
 				"dro",
-				"Git: Stash Drop"
-			],
-			[
-				"drop",
 				"Git: Stash Drop"
 			],
 			[
@@ -761,10 +741,6 @@
 			[
 				"dif",
 				"Git: Diff All"
-			],
-			[
-				"pop",
-				"Git: Stash Pop"
 			],
 			[
 				"pa",
@@ -1101,8 +1077,17 @@
 	},
 	"file_history":
 	[
-		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/csapp.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Labs/Lab 07 - Proxy Lab/proxylab-handout/proxy.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/open_clientfd_r.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Labs/Lab 07 - Proxy Lab/proxylab-handout/open_clientfd_r.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/Makefile",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/csapp.h",
+		"/Users/WITAN/Documents/School/15213 Computer System/Labs/Lab 07 - Proxy Lab/proxylab-handout/Makefile",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/tiny.c",
 		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/mm.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/csapp.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/proxy.c",
+		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/csapp.c",
 		"/Users/WITAN/Downloads/bing-wallpaper-master/Tools/com.ideasftw.bing-wallpaper.plist",
 		"/Users/WITAN/Downloads/bing-wallpaper-master/bing-wallpaper.sh",
 		"/Users/WITAN/Documents/School/15213 Computer System/Assignments/04_cachelab/csim.c",
@@ -1219,16 +1204,7 @@
 		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/Python PEP8 Autoformat/Default (OSX).sublime-keymap",
 		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/Python PEP8 Autoformat/pep8_autoformat.sublime-settings",
 		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/BracketHighlighter/bh_core.sublime-settings",
-		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/bh_core.sublime-settings",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/runNB.py",
-		"/Users/WITAN/Downloads/BracketHighlighter/bh_plugin.py",
-		"/Users/WITAN/Downloads/BracketHighlighter/bh_core.py",
-		"/Users/WITAN/Library/Application Support/Sublime Text 3/Installed Packages/BracketHighlighter/readme.md",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/nbResults.csv",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/code/logLikelihood.csv",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/seeresults.csv",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/nbResults.csv",
-		"/Users/WITAN/School/10701 Machine Learning/Homework/homework1/data/logLikelihood.csv"
+		"/Users/WITAN/Library/Application Support/Sublime Text 3/Packages/User/bh_core.sublime-settings"
 	],
 	"find":
 	{
@@ -1239,6 +1215,7 @@
 		"height": 92.0,
 		"where_history":
 		[
+			"/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab",
 			"/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab",
 			"/Users/WITAN/Google Drive/Wireless Networks/final_report",
 			"/Users/WITAN/Documents/Code/bitcoin/src",
@@ -1251,6 +1228,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Rio_readlineb",
+			"Rio_writen",
+			"protocol",
+			"make_requesthdrs",
+			"build_requesthdr",
+			"printf",
+			"rv",
+			"return",
+			"port",
+			"rv",
+			"Cannot make the connection",
+			"parse_uri",
+			"parse_request",
+			"doit",
+			"connfd",
+			";\n",
+			"doit",
 			"dest_ip",
 			"parse_uri",
 			"read_requesthdrs",
@@ -1361,24 +1355,7 @@
 			"SIGHASH_ANYONECANPAY",
 			"unknown hashtype",
 			"unknow hashtype",
-			"-127",
-			"n1y8g",
-			"n1y",
-			"SatoshiAmount",
-			"outputTransactionList",
-			"inputTransactionList",
-			"TempKeyPubAddr",
-			"TransactinOutput",
-			"TempKeyPubAddress",
-			"buildTransactionOutput",
-			", addOutputScript",
-			", addOutputScript = False",
-			"createScriptPublicKey",
-			"buildRawTransaction",
-			"createScriptPublicKey",
-			"Solver",
-			"AreInputsStandard",
-			"JSONRPCError"
+			"-127"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1405,15 +1382,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5479,
+						"buffer_size": 9427,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2796,
-								2796
+								1030,
+								1030
 							]
 						],
 						"settings":
@@ -1421,26 +1398,188 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
-								"bh_double_quote_close",
+								"bh_double_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+										"PATH": "/usr/local/bin:/usr/local/sbin:$PATH",
+										"PYTHONPATH": "/usr/local/lib/python2.7/site-packages:/usr/local/lib/python:$PYTHONPATH"
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"origin_encoding": "ASCII",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/WITAN/Documents/School/15213 Computer System/Labs/Lab 07 - Proxy Lab/proxylab-handout/example",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 29914,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								29914,
+								29914
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_name": "",
+							"bh_regions":
+							[
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
@@ -1449,14 +1588,34 @@
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
@@ -1569,418 +1728,13 @@
 							"codeintel_tooltips": "popup",
 							"origin_encoding": "ASCII",
 							"sublime_auto_complete": true,
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 928.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/Makefile",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 883,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								756,
-								756
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close"
-							],
-							"codeintel": true,
-							"codeintel_config":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_files_in_project": false,
-									"javascriptExtraPaths":
-									[
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 5,
-									"codeintel_scan_files_in_project": false,
-									"phpExtraPaths":
-									[
-									]
-								},
-								"Python":
-								{
-									"env":
-									{
-										"PATH": "/usr/local/bin:/usr/local/sbin:$PATH",
-										"PYTHONPATH": "/usr/local/lib/python2.7/site-packages:/usr/local/lib/python:$PYTHONPATH"
-									}
-								}
-							},
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_live": true,
-							"codeintel_live_enabled_languages":
-							[
-								"JavaScript",
-								"Mason",
-								"XBL",
-								"XUL",
-								"RHTML",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"XSLT",
-								"Django",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Smarty",
-								"Node.js",
-								"Tcl",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							{
-								"JavaScript":
-								[
-									"/build/",
-									"/min/"
-								]
-							},
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-								"PyWin32",
-								"jQuery",
-								"Rails"
-							],
-							"codeintel_snippets": true,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"origin_encoding": "ASCII",
-							"sublime_auto_complete": true,
-							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/csapp.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17716,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close"
-							],
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1501.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/06_malloclab/mm.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11241,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close"
-							],
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5689.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/Users/WITAN/Documents/School/15213 Computer System/Assignments/07_proxylab/tiny/tiny.c",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6298,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								546,
-								567
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close"
-							],
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
 					"type": "text"
 				}
 			]
