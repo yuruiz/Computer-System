@@ -17,16 +17,15 @@ cache_t* cache_tail = NULL;
 int current_cache_size = 0;
 sem_t access_cache;
 
-int insert_cache(char *url, char *content)
+int insert_cache(char *url, char *content, int size)
 {
-	int content_size = strlen(content) + 1; //including the NULL at the end
 
-	if (content_size > MAX_OBJECT_SIZE)
+	if (size > MAX_OBJECT_SIZE)
 	{
 		return -1;
 	}
 
-	while (current_cache_size + content_size > MAX_CACHE_SIZE)
+	while (current_cache_size + size > MAX_CACHE_SIZE)
 	{
 		remove_cache();
 	}
@@ -47,11 +46,12 @@ int insert_cache(char *url, char *content)
 	}
 
 	newcache->url = calloc(strlen(url)+1, sizeof(char)); //including the NULL at the end
-	newcache->content = calloc(content_size, sizeof(char));
+	newcache->content = calloc(size, sizeof(char));
 	strcpy(newcache->url, url);
-	strcpy(newcache->content, content);
+	memcpy(newcache->content, content, size);
 
 	newcache->size = strlen(content)+1;
+	current_cache_size += size;
 	V(&access_cache);
 
 	return 0;
@@ -78,11 +78,11 @@ void remove_cache()
 
 	cache_head = cache_head->next;
 	current_cache_size -= rm_cache->size;
+	V(&access_cache);
 
 	free(rm_cache->url);
 	free(rm_cache->content);
 	free(rm_cache);
-	V(&access_cache);
 }
 
 char* find_cache(char* url)
@@ -95,11 +95,11 @@ char* find_cache(char* url)
 
 	cache_t* cur_cache = cache_head;
 
+	P(&access_cache);
 	while(cur_cache != NULL)
 	{
 		if (!strcmp(cur_cache->url, url))
 		{
-			P(&access_cache);
 			if (cur_cache != cache_tail)
 			{
 				if (cur_cache != cache_head)
@@ -114,7 +114,7 @@ char* find_cache(char* url)
 				cache_tail = cur_cache;
 			}
 
-			content = calloc(strlen(content)+1, sizeof(char));
+			content = calloc(strlen(cur_cache->content)+1, sizeof(char));
 			strcpy(content, cur_cache->content);
 
 			V(&access_cache);
@@ -124,6 +124,7 @@ char* find_cache(char* url)
 
 		cur_cache = cur_cache->next;
 	}
+	V(&access_cache);
 
 	return NULL;
 }

@@ -139,34 +139,39 @@ static void doit(int fd)
     Rio_writen_r(dest_fd, hdr, strlen(hdr));
 
     // printf("The web content is as below: \n");
+    memset(content, 0, MAXLINE);
+    memset(cache_object, 0, MAX_OBJECT_SIZE);
 
     while (1)
     {
-        Rio_readlineb_r(&dest_rio, content, MAXLINE);
+        int buf_size = 0;
+        buf_size = Rio_readlineb_r(&dest_rio, content, MAXLINE);
         Rio_writen_r(fd, content, strlen(content));
 
         // printf("%s", content);
-
+        memcpy((void *)cache_object + object_size, content, buf_size);
+        object_size += buf_size;
         if (!strcmp(content, "\r\n"))
         {
             break;
         }
     }
 
-    memset(cache_object, 0, MAXLINE);
     while((content_size = Rio_readnb_r(&dest_rio, content, MAXLINE)) > 0)
     {
         Rio_writen_r(fd, content, content_size);
-        object_size += content_size;
-        if (object_size <= MAX_OBJECT_SIZE)
+
+        if (object_size + content_size <= MAX_OBJECT_SIZE)
         {
-            strcat(cache_object, content);
+            memcpy((void *)cache_object + object_size, content, content_size);
         }
+
+        object_size += content_size;
     }
 
     if (object_size <= MAX_OBJECT_SIZE)
     {
-        insert_cache(uri, content);
+        insert_cache(uri, cache_object, object_size);
     }
 
 
