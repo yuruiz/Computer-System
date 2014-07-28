@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "csapp.h"
+#include "cache.h"
 
 #define DEBUG
 /* Recommended max cache and object sizes */
@@ -25,6 +26,8 @@ ssize_t Rio_writen_r(int fd, void *usrbuf, size_t n);
 ssize_t Rio_readlineb_r(rio_t *rp, void *usrbuf, size_t n);
 ssize_t Rio_readnb_r(rio_t *rp, void *usrbuf, size_t n);
 
+extern sem_t access_cache;
+
 int main(int argc, char **argv)
 {
 
@@ -33,6 +36,8 @@ int main(int argc, char **argv)
     pthread_t tid;
 
     Signal(SIGPIPE, SIG_IGN);
+
+    sem_init(&access_cache, 0, 1);
 
     clientlen = sizeof(clientaddr);
 
@@ -76,9 +81,9 @@ static void *thread(void *vargp)
 static void doit(int fd)
 {
     // char dest_port;
-    int dest_fd, content_size = 0;
+    int dest_fd, content_size = 0, object_size = 0;
     char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE], hdr[MAXLINE], dest_port[MAXLINE];
-    char dest_host[MAXLINE], dest_page[MAXLINE], content[MAXLINE];
+    char dest_host[MAXLINE], dest_page[MAXLINE], content[MAXLINE], cache_object[MAX_OBJECT_SIZE];
     rio_t rio, dest_rio;
 
     /* Read request line and headers */
@@ -91,6 +96,15 @@ static void doit(int fd)
     }
     sscanf(buf, "%s %s %s", method, uri, version);
     // printf("Thread %d: The request is: %s\n", (int)pthread_self(), buf);
+
+    char* cache_result;
+
+    if ((cache_result = find_cache(uri)) != NULL)
+    {
+        Rio_writen_r(fd, cache_result, strlen(cache_result));
+        free(cache_result);
+        return;
+    }
 
     memset(hdr, 0, MAXLINE);
     /* Parse URI from GET request */
@@ -117,21 +131,6 @@ static void doit(int fd)
 
     if ((dest_fd = open_clientfd_r(dest_host, dest_port)) <= 0)
     {
-        // switch (dest_fd)
-        // {
-        //     case 0:
-        //         printf("0 cannot open the socket\n");
-        //         break;
-        //     case -1:
-        //         printf("-1 Cannot make the connection\n");
-        //         break;
-
-        //     case -2:
-        //         printf("-2 DNS Error\n");
-        //         break;
-        // }
-
-
         return;
     }
 
@@ -154,9 +153,20 @@ static void doit(int fd)
         }
     }
 
+    memset(cache_object, 0, MAXLINE);
     while((content_size = Rio_readnb_r(&dest_rio, content, MAXLINE)) > 0)
     {
         Rio_writen_r(fd, content, content_size);
+        object_size += content_size;
+        if (object_size <= MAX_OBJECT_SIZE)
+        {
+            strcat(cache_object, content);
+        }
+    }
+
+    if (object_size <= MAX_OBJECT_SIZE)
+    {
+        insert_cache(uri, content);
     }
 
 
