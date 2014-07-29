@@ -50,7 +50,7 @@ int insert_cache(char *url, char *content, int size)
 	strcpy(newcache->url, url);
 	memcpy(newcache->content, content, size);
 
-	newcache->size = strlen(content)+1;
+	newcache->size = size;
 	current_cache_size += size;
 	V(&access_cache);
 
@@ -85,9 +85,9 @@ void remove_cache()
 	free(rm_cache);
 }
 
-char* find_cache(char* url)
+char* find_cache(char* url, int *size)
 {
-	char* content = NULL;
+	char *content = NULL;
 	if (!cache_head)
 	{
 		return NULL;
@@ -114,8 +114,9 @@ char* find_cache(char* url)
 				cache_tail = cur_cache;
 			}
 
-			content = calloc(strlen(cur_cache->content)+1, sizeof(char));
-			strcpy(content, cur_cache->content);
+			content = calloc(cur_cache->size, sizeof(char));
+			memcpy(content, cur_cache->content, cur_cache->size);
+			*size = cur_cache->size;
 
 			V(&access_cache);
 

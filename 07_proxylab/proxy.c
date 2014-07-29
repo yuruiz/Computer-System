@@ -97,11 +97,12 @@ static void doit(int fd)
     sscanf(buf, "%s %s %s", method, uri, version);
     // printf("Thread %d: The request is: %s\n", (int)pthread_self(), buf);
 
-    char* cache_result;
+    char* cache_result = NULL;
+    int cache_size;
 
-    if ((cache_result = find_cache(uri)) != NULL)
+    if ((cache_result = find_cache(uri, &cache_size)) != NULL)
     {
-        Rio_writen_r(fd, cache_result, strlen(cache_result));
+        Rio_writen_r(fd, cache_result, cache_size);
         free(cache_result);
         return;
     }
@@ -171,6 +172,7 @@ static void doit(int fd)
 
     if (object_size <= MAX_OBJECT_SIZE)
     {
+        // printf("%s\n %s, %d\n", uri, cache_object, object_size);
         insert_cache(uri, cache_object, object_size);
     }
 
@@ -195,70 +197,33 @@ static void make_requesthdrs(rio_t *rp, char *hdr, char *host)
     while (strcmp(buf, "\r\n") && strcmp(buf, "\n"))
     {
         if (strstr(buf, "User-Agent:"))
-        {
-            ua = 1;
-            strcat(hdr, user_agent_hdr);
-        }
+        {ua = 1; strcat(hdr, user_agent_hdr);}
         else if (strstr(buf, "Accept:"))
-        {
-            ac = 1;
-            strcat(hdr, accept_hdr);
-        }
+        {ac = 1; strcat(hdr, accept_hdr);}
         else if (strstr(buf, "Accept-Encoding:"))
-        {
-            ae = 1;
-            strcat(hdr, accept_encoding_hdr);
-        }
+        {ae = 1; strcat(hdr, accept_encoding_hdr);}
         else if (strstr(buf, "Connection:"))
-        {
-            cn = 1;
-            strcat(hdr, connection_hdr);
-        }
+        {cn = 1; strcat(hdr, connection_hdr);}
         else if (strstr(buf, "Proxy-Connection:"))
-        {
-            pc = 1;
-            strcat(hdr, proxy_connection_hdr);
-        }
+        {pc = 1; strcat(hdr, proxy_connection_hdr);}
         else if (strstr(buf, "Host:"))
-        {
-            strcat(hdr, buf);
-            hs = 1;
-        }
-        else
-        {strcat(hdr, buf);}
+        {hs = 1; strcat(hdr, buf);}
+        else{strcat(hdr, buf);}
 
         Rio_readlineb_r(rp, buf, MAXLINE);
     }
 
-    if (!ua)
-    {
-        strcat(hdr, user_agent_hdr);
-    }
+    if (!ua) {strcat(hdr, user_agent_hdr);}
 
-    if (!ac)
-    {
-        strcat(hdr, accept_hdr);
-    }
+    if (!ac) {strcat(hdr, accept_hdr);}
 
-    if (!ae)
-    {
-        strcat(hdr, accept_encoding_hdr);
-    }
+    if (!ae) {strcat(hdr, accept_encoding_hdr);}
 
-    if (!cn)
-    {
-        strcat(hdr, connection_hdr);
-    }
+    if (!cn) {strcat(hdr, connection_hdr);}
 
-    if (!pc)
-    {
-        strcat(hdr, proxy_connection_hdr);
-    }
+    if (!pc) {strcat(hdr, proxy_connection_hdr);}
 
-    if (!hs)
-    {
-        sprintf(hdr, "%sHost: %s\r\n", hdr, host);
-    }
+    if (!hs) {sprintf(hdr, "%sHost: %s\r\n", hdr, host);}
 
     strcat(hdr, "\r\n");
 
