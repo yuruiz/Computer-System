@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "csapp.h"
 #include "cache.h"
+#include "thread_io.h"
 
 #define DEBUG
 /* Recommended max cache and object sizes */
@@ -22,11 +23,9 @@ static int parse_uri(char *uri, char *host, char *port, char *page);
 static void clienterror(int fd, char *cause, char *errnum, char *shortmsg, char *longmsg);
 static void *thread(void *vargp);
 
-ssize_t Rio_writen_r(int fd, void *usrbuf, size_t n);
-ssize_t Rio_readlineb_r(rio_t *rp, void *usrbuf, size_t n);
-ssize_t Rio_readnb_r(rio_t *rp, void *usrbuf, size_t n);
-
-extern sem_t access_cache;
+// extern sem_t access_cache;
+extern pthread_rwlock_t lock;
+pthread_rwlockattr_t attr;
 
 int main(int argc, char **argv)
 {
@@ -37,7 +36,9 @@ int main(int argc, char **argv)
 
     Signal(SIGPIPE, SIG_IGN);
 
-    sem_init(&access_cache, 0, 1);
+    // sem_init(&access_cache, 0, 1);
+    pthread_rwlockattr_setkind_np(&attr, PTHREAD_RWLOCK_PREFER_WRITER_NONRECURSIVE_NP);
+    pthread_rwlock_init(&lock, &attr);
 
     clientlen = sizeof(clientaddr);
 
@@ -97,13 +98,13 @@ static void doit(int fd)
     sscanf(buf, "%s %s %s", method, uri, version);
     // printf("Thread %d: The request is: %s\n", (int)pthread_self(), buf);
 
-    char* cache_result = NULL;
-    int cache_size;
+    // char* cache_result = NULL;
+    // int cache_size;
 
-    if ((cache_result = find_cache(uri, &cache_size)) != NULL)
+    if (find_cache(fd, uri) != -1)
     {
-        Rio_writen_r(fd, cache_result, cache_size);
-        free(cache_result);
+        // Rio_writen_r(fd, cache_result, cache_size);
+        // free(cache_result);
         return;
     }
 
@@ -301,51 +302,3 @@ static void clienterror(int fd, char *cause, char *errnum,
     Rio_writen_r(fd, body, strlen(body));
 }
 /* $end clienterror */
-
-/* My own wrapper for the rio_writen which will return the value read */
-ssize_t Rio_writen_r(int fd, void *usrbuf, size_t n)
-{
-    ssize_t rv;
-
-    if ( (rv = rio_writen(fd, usrbuf, n)) != n)
-    {
-        if(errno != EPIPE)
-        {
-            unix_error("Rio_writen_r error");
-        }
-    }
-
-    return rv;
-}
-
-/* My own wrapper for the rio_readlineb_r which will return the value read */
-ssize_t Rio_readlineb_r(rio_t *rp, void *usrbuf, size_t n)
-{
-    ssize_t rc;
-
-    if ((rc = rio_readlineb(rp, usrbuf, n)) < 0)
-    {
-        if(errno != ECONNRESET)
-        {
-            unix_error("Rio_readlineb_r error");
-        }
-    }
-
-    return rc;
-}
-
-/* My own wrapper for the rio_readnb which will return the value read */
-ssize_t Rio_readnb_r(rio_t *rp, void *usrbuf, size_t n)
-{
-    ssize_t rc;
-
-    if ((rc = rio_readnb(rp, usrbuf, n)) < 0)
-    {
-        if(errno != ECONNRESET)
-        {
-            unix_error("Rio_readnb_r error");
-        }
-    }
-
-    return rc;
-}

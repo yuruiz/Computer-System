@@ -23,7 +23,10 @@ cache.o: cache.c cache.h csapp.h
 open_clientfd_r.o: open_clientfd_r.c csapp.h
 	$(CC) $(CFLAGS) -c open_clientfd_r.c
 
-proxy: proxy.o csapp.o cache.o open_clientfd_r.o
+thread_io.o: thread_io.c csapp.h thread_io.h
+	$(CC) $(CFLAGS) -c thread_io.c
+
+proxy: proxy.o csapp.o cache.o open_clientfd_r.o thread_io.o
 
 # Creates a tarball in ../proxylab-handin.tar that you should then
 # hand in to Autolab. DO NOT MODIFY THIS!

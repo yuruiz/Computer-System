@@ -1,4 +1,5 @@
 #include "cache.h"
+#include "thread_io.h"
 
 #define MAX_CACHE_SIZE 1049000
 #define MAX_OBJECT_SIZE 102400
@@ -15,7 +16,8 @@ typedef struct cache_entry_t
 cache_t* cache_head = NULL;
 cache_t* cache_tail = NULL;
 int current_cache_size = 0;
-sem_t access_cache;
+pthread_rwlock_t lock;
+// sem_t access_cache;
 
 int insert_cache(char *url, char *content, int size)
 {
@@ -32,7 +34,8 @@ int insert_cache(char *url, char *content, int size)
 
 	cache_t* newcache = calloc(1, sizeof(cache_t));
 
-	P(&access_cache);
+	// P(&access_cache);
+	pthread_rwlock_wrlock(&lock);
 	if (!cache_tail)
 	{
 		cache_head = newcache;
@@ -52,7 +55,8 @@ int insert_cache(char *url, char *content, int size)
 
 	newcache->size = size;
 	current_cache_size += size;
-	V(&access_cache);
+	// V(&access_cache);
+	pthread_rwlock_unlock(&lock);
 
 	return 0;
 }
@@ -60,7 +64,8 @@ int insert_cache(char *url, char *content, int size)
 void remove_cache()
 {
 	cache_t *rm_cache = cache_head;
-	P(&access_cache);
+	// P(&access_cache);
+	pthread_rwlock_wrlock(&lock);
 	if (!cache_head)
 	{
 		app_error("remove cache error: cache head is NULL!");
@@ -78,28 +83,41 @@ void remove_cache()
 
 	cache_head = cache_head->next;
 	current_cache_size -= rm_cache->size;
-	V(&access_cache);
+	// V(&access_cache);
+	pthread_rwlock_unlock(&lock);
 
 	free(rm_cache->url);
 	free(rm_cache->content);
 	free(rm_cache);
 }
 
-char* find_cache(char* url, int *size)
+int find_cache(int fd, char* url)
 {
 	char *content = NULL;
+	int size;
+	pthread_rwlock_rdlock(&lock);
 	if (!cache_head)
 	{
-		return NULL;
+		pthread_rwlock_unlock(&lock);
+		return -1;
 	}
 
 	cache_t* cur_cache = cache_head;
 
-	P(&access_cache);
+	// P(&access_cache);
 	while(cur_cache != NULL)
 	{
 		if (!strcmp(cur_cache->url, url))
 		{
+			content = calloc(cur_cache->size, sizeof(char));
+			memcpy(content, cur_cache->content, cur_cache->size);
+			size = cur_cache->size;
+			pthread_rwlock_unlock(&lock);
+
+			Rio_writen_r(fd, content, size);
+			free(content);
+
+			pthread_rwlock_wrlock(&lock);
 			if (cur_cache != cache_tail)
 			{
 				if (cur_cache != cache_head)
@@ -114,18 +132,15 @@ char* find_cache(char* url, int *size)
 				cache_tail = cur_cache;
 			}
 
-			content = calloc(cur_cache->size, sizeof(char));
-			memcpy(content, cur_cache->content, cur_cache->size);
-			*size = cur_cache->size;
+			pthread_rwlock_unlock(&lock);
 
-			V(&access_cache);
-
-			return content;
+			return 0;
 		}
 
 		cur_cache = cur_cache->next;
 	}
-	V(&access_cache);
+	// V(&access_cache);
+	pthread_rwlock_unlock(&lock);
 
-	return NULL;
+	return -1;
 }
